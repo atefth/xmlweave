@@ -6,11 +6,15 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const temporary = await mkdtemp(join(tmpdir(), 'xmlweave-consumer-'));
+// Spaces exercise Windows argument handling in every CI consumer run.
+const temporary = await mkdtemp(join(tmpdir(), 'xmlweave consumer '));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const npmCli = process.env.npm_execpath;
+if (!npmCli) throw new Error('Run this fixture through npm run test:consumers.');
 function run(command, args, cwd = temporary) {
-  return execFileSync(command, args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
-    shell: process.platform === 'win32' && command === npm });
+  return execFileSync(command === npm ? process.execPath : command,
+    command === npm ? [npmCli, ...args] : args,
+    { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
 }
 try {
   const [packed] = JSON.parse(run(npm, ['pack', '--json', '--ignore-scripts', '--pack-destination', temporary], root));
@@ -59,4 +63,3 @@ catch (error) { assert.ok(error instanceof cjs.XmlError); }
 } finally {
   await rm(temporary, { recursive: true, force: true });
 }
-

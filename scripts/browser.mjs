@@ -7,11 +7,12 @@ import { build } from 'esbuild';
 import { chromium, firefox, webkit } from 'playwright';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const temporary = await mkdtemp(join(tmpdir(), 'xmlweave-browser-'));
+const temporary = await mkdtemp(join(tmpdir(), 'xmlweave browser '));
+const npmCli = process.env.npm_execpath;
+if (!npmCli) throw new Error('Run this fixture through npm run test:browser.');
 function npm(args, cwd = root) {
-  const windows = process.platform === 'win32';
-  const result = spawnSync(windows ? 'npm.cmd' : 'npm', windows ? args.map(arg => `"${arg}"`) : args, {
-    cwd, encoding: 'utf8', shell: windows,
+  const result = spawnSync(process.execPath, [npmCli, ...args], {
+    cwd, encoding: 'utf8',
   });
   if (result.error || result.status !== 0) {
     throw new Error(`npm ${args.join(' ')} failed:\n${result.error ?? ''}${result.stdout ?? ''}${result.stderr ?? ''}`);

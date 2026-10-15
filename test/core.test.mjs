@@ -110,6 +110,15 @@ test('mutation rejects asynchronous callbacks and invalid final documents', () =
   assert.throws(() => mutateXml(parseXml('<r/>'), (doc) => doc.removeChild(doc.documentElement)), error('INVALID_DOCUMENT', 'mutate'));
 });
 
+test('unsupported async mutations never execute native async callbacks or leak rejections', async () => {
+  const doc = parseXml('<r/>');
+  let executed = false;
+  assert.throws(() => mutateXml(doc, async () => { executed = true; throw new Error('async'); }), error('INVALID_ARGUMENT', 'mutate'));
+  assert.equal(executed, false);
+  assert.throws(() => mutateXml(doc, () => Promise.reject(new Error('rejected callback'))), error('INVALID_ARGUMENT', 'mutate'));
+  await new Promise(resolve => setTimeout(resolve, 0));
+});
+
 test('DOM-added doctypes are forbidden and node accounting includes attributes', () => {
   const doc = createDocument();
   doc.appendChild(doc.implementation.createDocumentType('r', '', ''));
