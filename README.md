@@ -1,10 +1,17 @@
-# XMLWeave
+# 🧵 XMLWeave
+
+[![CI](https://github.com/atefth/xmlweave/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/atefth/xmlweave/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-a7f3d0?style=flat-square)](LICENSE)
+[![Source preview](https://img.shields.io/badge/source-0.1.0--dev.0-c4b5fd?style=flat-square)](CHANGELOG.md)
+[![Roadmap](https://img.shields.io/badge/roadmap-on_the_loom-fbcfe8?style=flat-square)](https://github.com/users/atefth/projects/3)
+
+**Small API. Structured chaos. XML, with better vibes.** ✨
 
 A TypeScript-first XML toolkit for JavaScript and TypeScript, inspired by Java `javax.xml`.
 
 **Status: usable parser MVP in source; no npm release.** Parse complete XML strings synchronously, create and mutate documents, and serialize well-formed XML with explicit errors and limits. The selected engine is slimdom 4.3.5 behind a mandatory DTD-rejection facade. See the [engine decisions](docs/decisions.md), [roadmap board](https://github.com/users/atefth/projects/3) and [issues](https://github.com/atefth/xmlweave/issues).
 
-## Use from source
+## 🛠️ Get it spinning
 
 Use Node 22 or 24. Clone this repository, run `npm ci` and `npm run build`. `npm pack` creates an installable development tarball; install its absolute path in your consumer with `npm install /path/to/xmlweave-0.1.0-dev.0.tgz`. The package is private to prevent accidental registry publication. XMLWeave is licensed under MIT.
 
@@ -42,7 +49,7 @@ if (root) root.setAttribute('checked', 'yes');
 
 Core types require ES2022 libraries and no browser globals or `@types/node`. Runtime documents come from this package's `parseXml` or `createDocument`; an independent slimdom or browser DOM instance is not accepted by the facade. DOM node types are exported as TypeScript types, not runtime constructors.
 
-## API and behavior
+## 🪡 Four stitches, one document
 
 | API | Behavior |
 | --- | --- |
@@ -55,7 +62,7 @@ Use namespace-aware DOM methods such as `createElementNS`, `setAttributeNS`, `ge
 
 Semantic roundtrips preserve expanded names, attribute values and ordered content. Prefix spelling, quote style, empty-element syntax and lexical entity spelling may change. The input is an already decoded JavaScript string; an XML encoding declaration does not decode bytes. This is a partial DOM implementation, not a full browser DOM or full XML conformance claim.
 
-## Errors and resource policy
+## 🛡️ Guardrails included
 
 `XmlError` extends `Error` and exposes `code`, `operation`, optional `cause` and optional `line`/`column`. DTD rejection supplies a location; malformed-input details remain in the engine cause when available, so callers should branch on code instead of engine message text.
 
@@ -72,16 +79,23 @@ DTDs, custom entities and external entities are always rejected before engine pa
 
 Options may lower the defaults: `maxLength: 1_000_000` UTF-16 code units per source/result string, `maxDepth: 256` nested elements and `maxNodes: 100_000` DOM nodes including the document and attributes. Values must be positive safe integers no greater than the defaults. Length/depth are checked before parsing; node count is checked after parsing. Serialization checks the tree first and the escaped result length afterward. These whole-document synchronous operations consume memory proportional to input and do not provide a CPU timeout or sandbox. Mutation callbacks are application code; they are not restricted by these guards.
 
-## Verification and compatibility
+## 🧪 Receipts, not wishful thinking
 
 `npm test` runs the original regression corpus and engine comparison. `npm run test:consumers` installs the actual packed tarball into an isolated project and checks JavaScript ESM/CJS interchange and strict TypeScript declarations with no ambient DOM/Node types. `npm run test:browser` installs another packed copy, bundles with esbuild and runs real Chromium, Firefox and WebKit checks. Install browser test tools once with `npx playwright install chromium firefox webkit` (`--with-deps` on Linux). `npm run check` runs all of these, including the build.
 
 The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with Node16/NodeNext/bundler resolution, and Playwright 1.64.1 browser engines with esbuild 0.28.2. Compatibility applies to the passing fixture combinations; other bundlers, browsers, Node versions or arbitrary TypeScript configurations are unverified. Corpus cases are original regression fixtures authored in this repository; they are not the complete W3C conformance suite.
 
-## Release and future scope
+## 🗺️ On the loom
+
+| Thread | Status |
+| --- | --- |
+| Parse · create · mutate · serialize | ✅ Available in source |
+| ESM · CommonJS · TypeScript declarations | ✅ Tested packed artifacts |
+| XPath · streaming · schema validation · transformations | 🚧 In development; follow the linked roadmap |
+| npm release | 📦 Not published |
 
 The [release checklist](docs/releasing.md) requires the full CI matrix, package inspection, compatibility documentation, dependency notices and an owner-approved license before registry publication. No package has been published. As a pre-1.0 development API, breaking changes require a documented changelog entry and a minor version increment; fixes use patch increments. Future API changes should include migration examples and consumer tests.
 
-XPath, streaming, asynchronous schema validation and transformations remain optional future companions. XML signatures, SOAP and object mapping are future scope decisions, not MVP commitments.
+XPath, streaming, asynchronous schema validation and transformations are being built as optional companions. XML signatures, SOAP and object mapping remain separate scope decisions.
 
 XMLWeave is [MIT licensed](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses and retained copyright notices.
