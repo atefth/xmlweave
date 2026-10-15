@@ -4,13 +4,40 @@
   "private": true,
   "description": "Synchronous XML toolkit for JavaScript and TypeScript",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs",
+    "CHANGELOG.md"
+  ],
   "scripts": {
-    "test": "node --test test/engine-spike.test.mjs"
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:consumers": "node scripts/consumers.mjs",
+    "test:browser": "node scripts/browser.mjs",
+    "check": "npm run build && npm test && npm run test:consumers && npm run test:browser"
   },
   "engines": {
     "node": ">=22"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/atefth/xmlweave.git"
