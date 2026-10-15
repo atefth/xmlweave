@@ -1,1 +1,21 @@
-{"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","strict":true,"lib":["ES2022"],"types":[],"skipLibCheck":false,"declaration":true,"emitDeclarationOnly":true,"outDir":"dist","rootDir":"src"},"include":["src/**/*.ts"]}
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "lib": [
+      "ES2022",
+      "ESNext.Disposable"
+    ],
+    "types": [],
+    "skipLibCheck": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

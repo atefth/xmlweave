@@ -18,7 +18,47 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./xpath": {
+      "import": {
+        "types": "./dist/xpath.d.ts",
+        "default": "./dist/xpath.js"
+      },
+      "require": {
+        "types": "./dist/xpath.d.cts",
+        "default": "./dist/xpath.cjs"
+      }
+    },
+    "./stream": {
+      "import": {
+        "types": "./dist/stream.d.ts",
+        "default": "./dist/stream.js"
+      },
+      "require": {
+        "types": "./dist/stream.d.cts",
+        "default": "./dist/stream.cjs"
+      }
+    },
+    "./schema": {
+      "import": {
+        "types": "./dist/schema.d.ts",
+        "default": "./dist/schema.js"
+      },
+      "require": {
+        "types": "./dist/schema.d.cts",
+        "default": "./dist/schema.cjs"
+      }
+    },
+    "./transform": {
+      "import": {
+        "types": "./dist/transform.d.ts",
+        "default": "./dist/transform.js"
+      },
+      "require": {
+        "types": "./dist/transform.d.cts",
+        "default": "./dist/transform.cjs"
+      }
+    }
   },
   "files": [
     "dist",
@@ -32,7 +72,8 @@
     "test": "node --test test/*.test.mjs",
     "test:consumers": "node scripts/consumers.mjs",
     "test:browser": "node scripts/browser.mjs",
-    "check": "npm run build && npm test && npm run test:consumers && npm run test:browser"
+    "check": "npm run build && npm test && npm run test:consumers && npm run test:browser && npm run test:schema-browser",
+    "test:schema-browser": "node scripts/schema-browser.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -48,7 +89,23 @@
   "devDependencies": {
     "@xmldom/xmldom": "0.9.12",
     "esbuild": "0.28.2",
+    "fontoxpath": "3.34.0",
+    "libxml2-wasm": "0.7.2",
     "playwright": "1.64.1",
-    "typescript": "7.0.2"
+    "saxes": "6.0.0",
+    "typescript": "7.0.2",
+    "xslt-processor": "5.1.2"
+  },
+  "peerDependencies": {
+    "libxml2-wasm": "0.7.2",
+    "xslt-processor": "5.1.2"
+  },
+  "peerDependenciesMeta": {
+    "libxml2-wasm": {
+      "optional": true
+    },
+    "xslt-processor": {
+      "optional": true
+    }
   }
 }
