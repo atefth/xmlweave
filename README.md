@@ -9,7 +9,7 @@
 
 A TypeScript-first XML toolkit for JavaScript and TypeScript, inspired by Java `javax.xml`.
 
-**Status: usable parser MVP in source; no npm release.** Parse complete XML strings synchronously, create and mutate documents, and serialize well-formed XML with explicit errors and limits. The selected engine is slimdom 4.3.5 behind a mandatory DTD-rejection facade. See the [engine decisions](docs/decisions.md), [roadmap board](https://github.com/users/atefth/projects/3) and [issues](https://github.com/atefth/xmlweave/issues).
+**Status: source preview; no npm release.** A small synchronous XML core, plus optional XPath, streaming, XSD validation and XSLT companions. Each comes with explicit policies, tested boundaries and its own entry point. See the [engine decisions](docs/decisions.md), [roadmap board](https://github.com/users/atefth/projects/3) and [issues](https://github.com/atefth/xmlweave/issues).
 
 ## 🛠️ Get it spinning
 
@@ -47,7 +47,47 @@ const root = document.documentElement;
 if (root) root.setAttribute('checked', 'yes');
 ```
 
-Core types require ES2022 libraries and no browser globals or `@types/node`. Runtime documents come from this package's `parseXml` or `createDocument`; an independent slimdom or browser DOM instance is not accepted by the facade. DOM node types are exported as TypeScript types, not runtime constructors.
+Public types require ES2022 libraries and no browser globals or `@types/node`, including companion declarations. Core runtime documents come from this package's `parseXml` or `createDocument`; an independent slimdom or browser DOM instance is not accepted by the core facade. DOM node types are exported as TypeScript types, not runtime constructors.
+
+## 🧰 Pick your threads
+
+The core stays lean: importing `xmlweave` loads none of the companions. XPath and streaming bundle their engines in separate entry points. Schema and transformations load independently installed peers only when used.
+
+| Import | What you get | Engine / boundary |
+| --- | --- | --- |
+| `xmlweave` | Synchronous XML DOM parse, create, mutate, serialize | slimdom 4.3.5; DTDs rejected |
+| `xmlweave/xpath` | Typed query results, namespaces and scalar variables | FontoXPath 3.34.0; tested XPath 3.1 subset, read-only policy |
+| `xmlweave/stream` | Pull-driven async XML events | saxes 6.0.0; bounded buffers, backpressure and cancellation |
+| `xmlweave/schema` | Async, disposable XSD validation | libxml2-wasm 0.7.2 peer; self-contained XSD 1.0 |
+| `xmlweave/transform` | Prepared stylesheets and async XML/text results | xslt-processor 5.1.2 peer; constrained XSLT 1.0 subset |
+
+```js
+import { evaluateXPathToNumber } from 'xmlweave/xpath';
+import { streamXml } from 'xmlweave/stream';
+
+const books = evaluateXPathToNumber('count(/b:catalog/b:book)', document, {
+  namespaces: { b: 'urn:books' },
+});
+for await (const event of streamXml(['<root>', 'hello &amp; goodbye', '</root>'])) {
+  if (event.type === 'text') console.log(event.value);
+}
+```
+
+For schema validation, install `libxml2-wasm@0.7.2`; for transformations, install `xslt-processor@5.1.2`. Neither peer is installed merely to use the core. Both work through asynchronous APIs with ESM or CommonJS:
+
+```js
+import { compileSchema } from 'xmlweave/schema';
+const schema = await compileSchema(`
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="answer" type="xs:int"/>
+  </xs:schema>`);
+try {
+  const result = await schema.validate('<answer>42</answer>');
+  console.log(result.valid, result.diagnostics);
+} finally { schema.dispose(); }
+```
+
+Browse the focused guides: [XPath](docs/xpath.md) · [streaming](docs/streaming.md) · [schema validation](docs/schema.md) · [transformations](docs/transformations.md). Browser schema validation uses a native ESM engine/import map; its guide includes the tested setup. The other companions are tested as esbuild browser bundles. The transformation peer is LGPL-3.0 and remains external to the distributed XMLWeave artifact; retain its own license when distributing it.
 
 ## 🪡 Four stitches, one document
 
@@ -81,7 +121,7 @@ Options may lower the defaults: `maxLength: 1_000_000` UTF-16 code units per sou
 
 ## 🧪 Receipts, not wishful thinking
 
-`npm test` runs the original regression corpus and engine comparison. `npm run test:consumers` installs the actual packed tarball into an isolated project and checks JavaScript ESM/CJS interchange and strict TypeScript declarations with no ambient DOM/Node types. `npm run test:browser` installs another packed copy, bundles with esbuild and runs real Chromium, Firefox and WebKit checks. Install browser test tools once with `npx playwright install chromium firefox webkit` (`--with-deps` on Linux). `npm run check` runs all of these, including the build.
+`npm test` runs original regression fixtures, engine comparisons, companion security policies, a large generated stream and repeated WASM lifecycle checks. `npm run test:consumers` installs the actual packed tarball into an isolated project and checks all five entry points, missing/present optional peers, JavaScript ESM/CJS interchange and strict TypeScript declarations with no ambient DOM/Node types. `npm run test:browser` bundles packed core/XPath/streaming/transform code for real Chromium, Firefox and WebKit; `npm run test:schema-browser` verifies the native ESM/WASM setup in those same engines. Install browser test tools once with `npx playwright install chromium firefox webkit` (`--with-deps` on Linux). `npm run check` runs all of these, including the build.
 
 The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with Node16/NodeNext/bundler resolution, and Playwright 1.64.1 browser engines with esbuild 0.28.2. Compatibility applies to the passing fixture combinations; other bundlers, browsers, Node versions or arbitrary TypeScript configurations are unverified. Corpus cases are original regression fixtures authored in this repository; they are not the complete W3C conformance suite.
 
@@ -91,11 +131,11 @@ The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with 
 | --- | --- |
 | Parse · create · mutate · serialize | ✅ Available in source |
 | ESM · CommonJS · TypeScript declarations | ✅ Tested packed artifacts |
-| XPath · streaming · schema validation · transformations | 🚧 In development; follow the linked roadmap |
+| XPath · streaming · schema validation · transformations | ✅ Optional source companions with documented subsets |
 | npm release | 📦 Not published |
 
 The [release checklist](docs/releasing.md) requires the full CI matrix, package inspection, compatibility documentation, dependency notices and an owner-approved license before registry publication. No package has been published. As a pre-1.0 development API, breaking changes require a documented changelog entry and a minor version increment; fixes use patch increments. Future API changes should include migration examples and consumer tests.
 
-XPath, streaming, asynchronous schema validation and transformations are being built as optional companions. XML signatures, SOAP and object mapping remain separate scope decisions.
+The scoped roadmap is implemented. Signatures, SOAP, JAXB-style binding and general object mapping were evaluated and deferred with explicit prerequisites in the [scope decision record](docs/future-scope.md). No signature, protocol or binding support is claimed. XPath/XSLT operations and WASM validation provide no hard execution timeout; use trusted expressions/stylesheets/schemas or isolate compute-heavy work. Streaming's pinned engine is archived upstream; the [evaluation](docs/streaming.md) records why it passed correctness gates that the tested alternatives failed.
 
 XMLWeave is [MIT licensed](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses and retained copyright notices.
