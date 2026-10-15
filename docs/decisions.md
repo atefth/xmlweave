@@ -20,7 +20,7 @@ Use one CommonJS implementation and a thin ESM re-export wrapper, so mixed impor
 
 slimdom 4.3.5 and the evaluation-only xmldom 0.9.12 declare MIT. TypeScript and Playwright declare Apache-2.0; esbuild declares MIT. The shared CommonJS implementation bundles slimdom, with its complete license included as a legal comment and `dist/slimdom.LICENSE`. Its installed dependency also supplies public declaration types. Browser bundling must retain legal notices. See `THIRD_PARTY_NOTICES.md` and the lockfile for the tested inventory. Optional FontoXPath, WASM/schema and transformation candidates require separate license review before adoption.
 
-The owner has not chosen an XMLWeave license. No project license is selected by this work. `private: true` and `license: UNLICENSED` prevent accidental registry publication. This is a usable source MVP, not an npm release; public redistribution permission must be settled with the owner before distribution. The license-decision issue remains open until that choice is recorded.
+The owner explicitly selected MIT for XMLWeave on 2026-10-15. `LICENSE` records copyright 2026 Atef Haque, matching the authenticated owner's profile. `license: MIT` describes the project license; `private: true` remains as an independent safeguard against unintended registry publication. This is a usable source MVP, not an npm release.
 
 ## Research
 

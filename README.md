@@ -6,7 +6,7 @@ A TypeScript-first XML toolkit for JavaScript and TypeScript, inspired by Java `
 
 ## Use from source
 
-Use Node 22 or 24. Clone this repository, run `npm ci` and `npm run build`. `npm pack` creates an installable development tarball; install its absolute path in your consumer with `npm install /path/to/xmlweave-0.1.0-dev.0.tgz`. The package is private to prevent accidental registry publication; the project license is still an owner decision.
+Use Node 22 or 24. Clone this repository, run `npm ci` and `npm run build`. `npm pack` creates an installable development tarball; install its absolute path in your consumer with `npm install /path/to/xmlweave-0.1.0-dev.0.tgz`. The package is private to prevent accidental registry publication. XMLWeave is licensed under MIT.
 
 ```js
 import { parseXml, mutateXml, serializeXml } from 'xmlweave';
@@ -84,4 +84,4 @@ The [release checklist](docs/releasing.md) requires the full CI matrix, package 
 
 XPath, streaming, asynchronous schema validation and transformations remain optional future companions. XML signatures, SOAP and object mapping are future scope decisions, not MVP commitments.
 
-The project license has not been selected. See [third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses; they do not license XMLWeave's own source.
+XMLWeave is [MIT licensed](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses and retained copyright notices.

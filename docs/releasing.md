@@ -2,7 +2,7 @@
 
 This repository contains a development MVP. The checklist does not authorize npm publication.
 
-- [ ] Owner selects the XMLWeave project license and resolves issue #11.
+- [x] Owner selected MIT for XMLWeave; LICENSE and package metadata record the decision (issue #11).
 - [ ] Inventory runtime and transitive licenses against the exact lockfile; retain slimdom's complete notice in `dist/slimdom.LICENSE` and bundled legal comments.
 - [ ] Confirm passing CI on Node 22/24 and Windows/Linux, TypeScript 5.9.3/7.0.2 consumer fixtures, and Chromium/Firefox/WebKit browser fixtures.
 - [ ] Run `npm ci`, `npm run check` and `npm pack --dry-run`; inspect exports, both declaration formats, version, README, notices and absence of development-only files/secrets.
