@@ -22,7 +22,7 @@ test("isolated Xerces worker hard deadline interrupts CPU and leaves host respon
     await assert.rejects(
       compileIsolatedXercesSchema(integer, {
         workerURL: fixture("while(true){}"),
-        timeoutMs: 60,
+        timeoutMs: 500,
       }),
       { code: "TIMEOUT" },
     );

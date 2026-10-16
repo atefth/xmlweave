@@ -81,3 +81,7 @@ and the host transport audit found no remaining issue.
 Windows CI corpus correction: upstream fixture bytes are marked non-converting
 in Git. Every staged original is checked against its pinned upstream SHA256;
 no fixture content or expectation changed. Affected integrity audit is clear.
+
+The CPU-interruption regression allows 500 ms for worker startup on loaded CI
+hosts instead of 60 ms; it still requires TIMEOUT and a responsive host timer.
+This changes only the test budget, retaining both assertions.
