@@ -74,3 +74,7 @@ CI worker correction: the self-contained native worker now starts with no parent
 CLI flags. A real child-process regression covers incompatible Node runtime flags;
 35 affected isolation/hint tests pass. Independent affected-path Ponytail review
 and the host transport audit found no remaining issue.
+
+Windows CI corpus correction: upstream fixture bytes are marked non-converting
+in Git. Every staged original is checked against its pinned upstream SHA256;
+no fixture content or expectation changed. Affected integrity audit is clear.

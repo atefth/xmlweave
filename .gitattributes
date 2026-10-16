@@ -2,3 +2,4 @@ native/xerces-validation.cpp text eol=lf
 native/runtime/xerces-engine.js -text
 native/runtime/provenance.json text eol=lf
 native/runtime/xerces-engine.wasm binary
+test/fixtures/w3c-nist/upstream/** -text
