@@ -588,12 +588,15 @@ export async function createHintValidator(
       return withinSourceDeadline(
         async (signal) => {
           started = true;
-          const wait = <T>(promise: Promise<T>) =>
-            withinSourceDeadline(
+          const wait = <T>(promise: Promise<T>) => {
+            // Shared work can reject after the deadline guard declines to await it.
+            void promise.catch(() => {});
+            return withinSourceDeadline(
               () => promise,
               { ...settings, signal },
               () => disposed,
             );
+          };
           try {
             const normalized = await normalizeSourceWithDeadline(
                 source,

@@ -1101,7 +1101,7 @@ export async function validateSource(
       ...diagnostic,
       ...(normalized
         ? {
-            systemId: diagnostic.systemId ?? normalized.systemId,
+            systemId: diagnostic.systemId ?? normalized.systemId ?? nativeOptions.systemId,
             sourceKind: normalized.sourceKind,
             provenance: normalized.provenance,
           }

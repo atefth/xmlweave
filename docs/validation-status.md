@@ -17,7 +17,7 @@ The [requirements assessment](validation-parity.md) is a dated baseline, not a d
 | Conformance evidence | 13 pinned W3C/NIST datatype groups (65 instances) plus 19 complete structural/identity groups (32 schema/instance expectations); original metadata/license/hashes retained | Node and all three browser engines passed selected corpus |
 | Packaging | Explicit provider entry points, ESM/CJS identity, ES-only declarations on TypeScript 5.9.3/7.0.2, native assets/licenses and pinned rebuild inputs | Final packed consumers pass on both supported TypeScript versions |
 
-The final coherent build passes **326 Node tests**, **990 packed validation-browser assertions** (330 each in Chromium, Firefox and WebKit), packed consumer checks on **TypeScript 5.9.3 and 7.0.2**, and **183 Java reference expectations**. These runs include the final anonymous-type queries, namespace/default-output repairs, exact diagnostic handlers, cancellation and Ponytail budget regressions. Native source and runtime hashes match the pinned rebuild provenance.
+The final coherent build passes **338 Node tests**, **990 packed validation-browser assertions** (330 each in Chromium, Firefox and WebKit), packed consumer checks on **TypeScript 5.9.3 and 7.0.2**, and **183 Java reference expectations**. These runs include the final anonymous-type queries, namespace/default-output repairs, exact diagnostic handlers, cancellation and Ponytail budget regressions. Native source and runtime hashes match the pinned rebuild provenance.
 
 There are currently 13 executable public entry points plus the package metadata export; the README lists each companion explicitly.
 
