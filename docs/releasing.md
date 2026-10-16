@@ -34,5 +34,6 @@ explicitly established; ordinary native source/runtime hashes are a different re
 Patch releases cover fixes. Before 1.0, breaking API changes increment the minor
 version and include migration notes. Compatibility claims follow passing fixtures,
 not every bundler, Java distribution or TypeScript configuration. The Java companion
-is tested on Temurin 17; later OpenJDK-derived versions remain a separate coverage
-improvement. No new dependency or implicit Java requirement is introduced by release.
+has compatibility checks on Temurin 17, 21 and 25; support claims require those
+jobs to pass. Other JDK distributions/versions remain unverified. No new dependency
+or implicit Java requirement is introduced by release.

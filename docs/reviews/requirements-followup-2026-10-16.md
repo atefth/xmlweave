@@ -21,16 +21,22 @@ optional improvements.
 The XSD1.0 schema version attribute is user metadata with no validation semantics:
 [W3C XML Schema Structures Â§3.15.2](https://www.w3.org/TR/xmlschema-1/#element-schema).
 
-## Improvements tracked separately
+## Coverage improvements included in the release gate
 
-- Clean pinned native rebuild in CI: current CI verifies recorded source/runtime
-  consistency and tests shipped assets; that alone does not prove an independent
-  clean compiler rebuild. Add clean build plus native/packed-browser acceptance.
-- Java compatibility evidence: CI currently installs Temurin17. Add later LTS lanes
-  or narrow the documented tested range; later internal XS graph APIs are unverified.
-- Broader external corpus: currently65 unchanged W3C/NIST instances across eight
-  datatype families. Add complete pinned composition, identity and invalid-schema
-  groups with original bytes/metadata and visible mismatches.
+- Clean pinned native rebuild CI now builds from fresh compiler/source checkouts,
+  records the comparison with shipped hashes and runs native/browser acceptance.
+  Actual remote results must pass before closure; hash consistency alone was not
+  treated as proof of reproducibility.
+- Java compatibility CI now checks Temurin 17, 21 and 25, including the default
+  reference repair, type graph, callbacks, providers and external fixtures.
+- The corpus now adds 19 complete pinned structural/identity groups containing
+  32 unchanged schema/instance expectations. The original catalogue expands to
+  63 groups and 183 Java reference expectations, with original cases preserved.
+
+Expanded upstream fixtures also exposed a JDK default-IDREF bookkeeping defect.
+The adapter repair uses actual engine-selected types and IDs at document end;
+native and repaired Java providers must satisfy the unchanged expectations.
+Raw unmodified JAXP observations retain that independent runtime disagreement.
 
 [W3C describes its full test suite](https://www.w3.org/XML/2004/xml-schema-test-suite/)
 as collections with associated conformance metadata. Selected coverage is useful,
