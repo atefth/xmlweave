@@ -1,0 +1,1067 @@
+{
+  "formatVersion": 1,
+  "upstream": "https://github.com/w3c/xsdtests",
+  "revision": "7bc3365c652a322f3d762021b3879eb92dae7e30",
+  "scope": "Finite XSD 1.0 composition, identity and invalid-schema groups; not full W3C conformance.",
+  "selectionPolicy": "Named complete groups fixed before engine execution; all original expectations and recursive local schema dependencies retained.",
+  "copyright": {
+    "path": "00COPYRIGHT",
+    "bytes": 308,
+    "sha256": "7eed412023877d15a3900b6802afb9e6365c0ea0a71a1456c5bf5f3a591e7fb2",
+    "gitBlob": "f3bca2b0bdf114b334a68d9ae6ac30695e9d77a2"
+  },
+  "metadata": [
+    {
+      "path": "msMeta/Schema_w3c.xml",
+      "bytes": 92021,
+      "sha256": "486c831895933c4f795eaef1ff0f8033a068ce04eaa1ff3753609ba0c00672d4",
+      "gitBlob": "417ca5f89468aaee4183b683d74f6d0fcb950b77",
+      "storedAs": "Schema_w3c.xml.gz",
+      "compressedSha256": "4e81996993dbaa83d6fded1121f93a51d193431717c2a6900598186655a3984a"
+    },
+    {
+      "path": "msMeta/IdentityConstraint_w3c.xml",
+      "bytes": 572224,
+      "sha256": "8cf0f3cf70eb4464ca8f80216032b5ddb4f8467f2ea032971bc6414c55be7874",
+      "gitBlob": "6ead1d4b4c57ab23d1437475aa7b0838a48dbc8b",
+      "storedAs": "IdentityConstraint_w3c.xml.gz",
+      "compressedSha256": "126f5f98cafdb01e4bc6e4ef8e8f21780bb734e708916cb7d18eba7962962b47"
+    }
+  ],
+  "groups": [
+    {
+      "group": "schC2",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schC2",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC2_a.xsd",
+              "bytes": 709,
+              "sha256": "3820ddc37c1ac0e7cdd7b0203eed06f27e48c3903c9ff556f0f2e3704dd2eadb",
+              "gitBlob": "e50972abaae8d0aca74ce120369360f13cdd3c3f"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schC2_a.xsd",
+          "bytes": 709,
+          "sha256": "3820ddc37c1ac0e7cdd7b0203eed06f27e48c3903c9ff556f0f2e3704dd2eadb",
+          "gitBlob": "e50972abaae8d0aca74ce120369360f13cdd3c3f"
+        },
+        {
+          "path": "msData/schema/schC2_b.xsd",
+          "bytes": 359,
+          "sha256": "2be623b54ab9605883a9e0808603d319c0d0028dfed2b8b3819a69afca94313f",
+          "gitBlob": "56f82038d91cc64d7ff0a17d31d29d51104126e9"
+        }
+      ]
+    },
+    {
+      "group": "schC3",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schC3",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC3_a.xsd",
+              "bytes": 709,
+              "sha256": "089d887174168b1e288f33e08466912f546984ea9807eeb8268b049b3755ad83",
+              "gitBlob": "bd30e305002161cea210b047ccd0557570825851"
+            }
+          ]
+        },
+        {
+          "name": "schC3.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC3.xml",
+              "bytes": 213,
+              "sha256": "69f746b6cf58808cbff9166171760be3c3b78aa1b728a7e37593cc7dba9d50bf",
+              "gitBlob": "0c9c070c7ae3558010da503460f056abcb0fbe3f"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schC3_a.xsd",
+          "bytes": 709,
+          "sha256": "089d887174168b1e288f33e08466912f546984ea9807eeb8268b049b3755ad83",
+          "gitBlob": "bd30e305002161cea210b047ccd0557570825851"
+        },
+        {
+          "path": "msData/schema/schC3_b.xsd",
+          "bytes": 319,
+          "sha256": "17223fb03ef73bce40062037b393a8b6fc15b64b337cbc3f59b493a377254b95",
+          "gitBlob": "a1695a8fe14bad14bd7a37daa120bc7f638da925"
+        }
+      ]
+    },
+    {
+      "group": "schC4",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schC4",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC4_a.xsd",
+              "bytes": 781,
+              "sha256": "6bab553955ac2431e411ea3e86ce6d981a78b8bee6e0bdc09c9cb50f9a74ad2c",
+              "gitBlob": "44aa15dec2356a05884fada5f2930325f61a9c63"
+            }
+          ]
+        },
+        {
+          "name": "schC4.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC4.xml",
+              "bytes": 252,
+              "sha256": "7030371a17d36dba92dd939bca5b1b47b1fcbb9098891179196e0be065a0074b",
+              "gitBlob": "65902746ba8b041c736d1258b571e2bb9a100fb9"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schC4_a.xsd",
+          "bytes": 781,
+          "sha256": "6bab553955ac2431e411ea3e86ce6d981a78b8bee6e0bdc09c9cb50f9a74ad2c",
+          "gitBlob": "44aa15dec2356a05884fada5f2930325f61a9c63"
+        },
+        {
+          "path": "msData/schema/schC4_b.xsd",
+          "bytes": 395,
+          "sha256": "cdd1183c5a0c0a74dc0d2a8996ba9aff70c8d462e508dd58016ca1d9fbdaaff7",
+          "gitBlob": "3e424feaa20b80aef661b758cd61b0ae8d9711c4"
+        }
+      ]
+    },
+    {
+      "group": "schC5",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schC5",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schC5_a.xsd",
+              "bytes": 781,
+              "sha256": "a9613395bacca5c16c337947fa7b832cae209c60124725166fe55d25d3e48d34",
+              "gitBlob": "31a69dc969f4a26c1c7433ecb1496a7be9f945d8"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schC5_a.xsd",
+          "bytes": 781,
+          "sha256": "a9613395bacca5c16c337947fa7b832cae209c60124725166fe55d25d3e48d34",
+          "gitBlob": "31a69dc969f4a26c1c7433ecb1496a7be9f945d8"
+        },
+        {
+          "path": "msData/schema/schC5_b.xsd",
+          "bytes": 395,
+          "sha256": "9750ba51dabd8466e17f08ba9846ad50723d4a23ee60d1bdb89331d1eba8228e",
+          "gitBlob": "aa79f8efd1c205959256234c9680e04475224c4b"
+        }
+      ]
+    },
+    {
+      "group": "schD10",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schD10",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schD10_a.xsd",
+              "bytes": 570,
+              "sha256": "99936025419bd35f7ac79c5ab253b559611d734403b65f39e96f32fdc1491174",
+              "gitBlob": "81674e55660dff2a1cc43e67d416eaf3e70b974b"
+            }
+          ]
+        },
+        {
+          "name": "schD10.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schD10.xml",
+              "bytes": 166,
+              "sha256": "88e529cf1c6d2a6e810008fdfa5953d21401dbb101c085799017556a2c1bfc36",
+              "gitBlob": "5a87e5f18a1aa21edaaebc688fa80a5720f37d2f"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schD10_a.xsd",
+          "bytes": 570,
+          "sha256": "99936025419bd35f7ac79c5ab253b559611d734403b65f39e96f32fdc1491174",
+          "gitBlob": "81674e55660dff2a1cc43e67d416eaf3e70b974b"
+        },
+        {
+          "path": "msData/schema/schD10_b.xsd",
+          "bytes": 423,
+          "sha256": "74c1c7bf538bfd7ae950b63a7f4fafca8f338ffd8ffd9f5707fd228285935cc0",
+          "gitBlob": "9a754af4af12241156abacf26e6264be0ed380cf"
+        },
+        {
+          "path": "msData/schema/schD10_c.xsd",
+          "bytes": 738,
+          "sha256": "03a67df01ea629291939c2b859c8a81139b9da9846a90de39c4044a22c86c127",
+          "gitBlob": "a804c91c73dcfb64d8a67f383cf9087d0db79c43"
+        }
+      ]
+    },
+    {
+      "group": "schF1",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF1",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF1_a.xsd",
+              "bytes": 653,
+              "sha256": "9292cefa37e0f9422f665f4f2010927c994400334f8473831e47ca9752d63e9d",
+              "gitBlob": "d9a8dc06dfe5b7537d98e44620c14a66da0635e7"
+            }
+          ]
+        },
+        {
+          "name": "schF1.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF1.xml",
+              "bytes": 242,
+              "sha256": "dd88dae14f9d4108f58e96e0f1541f169d63c2510d033ef023b6acbd8a6dbf6c",
+              "gitBlob": "5bba3737bc9eff74266d6b20972e07d2e534e0d0"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF1_a.xsd",
+          "bytes": 653,
+          "sha256": "9292cefa37e0f9422f665f4f2010927c994400334f8473831e47ca9752d63e9d",
+          "gitBlob": "d9a8dc06dfe5b7537d98e44620c14a66da0635e7"
+        },
+        {
+          "path": "msData/schema/schF1_b.xsd",
+          "bytes": 353,
+          "sha256": "c8d35713bc38944757ceb892b3fb4fd0c893303533b46f5d4f0049f61711f98d",
+          "gitBlob": "03e70e6d3d00f8e00ada7139640162bfc87eee33"
+        }
+      ]
+    },
+    {
+      "group": "schF2",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF2",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF2_a.xsd",
+              "bytes": 628,
+              "sha256": "47b04d582bdcb7c70bfda443ff0b7bc69fa7af9faf4d0fb6ecb4856729b72361",
+              "gitBlob": "c483b8ec53d974c66f5a0d44cac8f0de2652068f"
+            }
+          ]
+        },
+        {
+          "name": "schF2.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF2.xml",
+              "bytes": 244,
+              "sha256": "719f03307b680f9fdc200455d695153ba2f846c390defbb79212a090854871b2",
+              "gitBlob": "7bec5836381aa1da4316058d2920b585717de4dd"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF2_a.xsd",
+          "bytes": 628,
+          "sha256": "47b04d582bdcb7c70bfda443ff0b7bc69fa7af9faf4d0fb6ecb4856729b72361",
+          "gitBlob": "c483b8ec53d974c66f5a0d44cac8f0de2652068f"
+        },
+        {
+          "path": "msData/schema/schF2_b.xsd",
+          "bytes": 391,
+          "sha256": "59a9673337bb289d8a6a52e01d2e11e0cc54480ca14e15bead12260bf255d746",
+          "gitBlob": "193984f0cbf46c819c54c279743a07b7098d6e7d"
+        }
+      ]
+    },
+    {
+      "group": "schF3",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF3",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF3_a.xsd",
+              "bytes": 611,
+              "sha256": "b289e520c8bb0c22b9fb6ddd27ea3a08657b775b4c1344e05223aeda62d08ddd",
+              "gitBlob": "c44c92e326a5e93e07dbb33f5f7e8bf250a81930"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF3_a.xsd",
+          "bytes": 611,
+          "sha256": "b289e520c8bb0c22b9fb6ddd27ea3a08657b775b4c1344e05223aeda62d08ddd",
+          "gitBlob": "c44c92e326a5e93e07dbb33f5f7e8bf250a81930"
+        },
+        {
+          "path": "msData/schema/schF3_b.xsd",
+          "bytes": 354,
+          "sha256": "8d0066aad0ee824ba261d79812f10166e7c13e5574dc6093fb91204c2eb71533",
+          "gitBlob": "8c30ce1a43d6090bd98768be42a100b5af624590"
+        }
+      ]
+    },
+    {
+      "group": "schF4",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF4",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF4_a.xsd",
+              "bytes": 666,
+              "sha256": "a7efee3dd206153cfee2a3965e91913b542f69575e83b10e086d66f53ca246c6",
+              "gitBlob": "3a3d3db1753c54478cbd7759db7d36fe3a2ca5ea"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF4_a.xsd",
+          "bytes": 666,
+          "sha256": "a7efee3dd206153cfee2a3965e91913b542f69575e83b10e086d66f53ca246c6",
+          "gitBlob": "3a3d3db1753c54478cbd7759db7d36fe3a2ca5ea"
+        },
+        {
+          "path": "msData/schema/schF4_b.xsd",
+          "bytes": 391,
+          "sha256": "1f646480502a541312249e2e21b2288a3a1299d2ba35abb55bfd569c61c05d6e",
+          "gitBlob": "4c5be6679665448b613eae92367458a6afda2c1b"
+        }
+      ]
+    },
+    {
+      "group": "schF5",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF5",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF5_a.xsd",
+              "bytes": 634,
+              "sha256": "8a8fcd63b6b97f2b731b88aa315c5283fc270d4c148377349fc4a36fd92023d1",
+              "gitBlob": "6920e6967e9cdc739c978cd3faa53fdc943f153e"
+            }
+          ]
+        },
+        {
+          "name": "schF5.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF5.xml",
+              "bytes": 255,
+              "sha256": "5cd1d64ce374466207b673b68a5ce9d20dc5aeb0efeecc36fefbdfd3dc1eec07",
+              "gitBlob": "023bc60558135ce3a1db5120a1d2fa80c629648c"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF5_a.xsd",
+          "bytes": 634,
+          "sha256": "8a8fcd63b6b97f2b731b88aa315c5283fc270d4c148377349fc4a36fd92023d1",
+          "gitBlob": "6920e6967e9cdc739c978cd3faa53fdc943f153e"
+        },
+        {
+          "path": "msData/schema/schF5_b.xsd",
+          "bytes": 359,
+          "sha256": "b65079051f5db9da9b6e332b1f70abf9e24bd1c34bbde0b8bcfa8c0956f4a666",
+          "gitBlob": "dd7108a819dbde591ca61d535e8b9093798eab61"
+        }
+      ]
+    },
+    {
+      "group": "schF6",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schF6",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schF6_a.xsd",
+              "bytes": 235,
+              "sha256": "dbf2e9165c55afb2ff3d919355c942fc17dd03edc231c6f5b60361a8dac4d057",
+              "gitBlob": "d89a573252bce5cb8979ecfb5570f1c97f1bcf54"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schF6_a.xsd",
+          "bytes": 235,
+          "sha256": "dbf2e9165c55afb2ff3d919355c942fc17dd03edc231c6f5b60361a8dac4d057",
+          "gitBlob": "d89a573252bce5cb8979ecfb5570f1c97f1bcf54"
+        },
+        {
+          "path": "msData/schema/schF6_b.xsd",
+          "bytes": 165,
+          "sha256": "7f8cde8e0b0d5246c5d62d7cf049836fc71ec3ec8e45b3cac85a5b5e529697c4",
+          "gitBlob": "4c72a3c3e45d42cf9b5fcb5edad7ae9738a4e5db"
+        },
+        {
+          "path": "msData/schema/schF6_c.xsd",
+          "bytes": 95,
+          "sha256": "f856cee8a62b7f70e9ebc3ee827e9c21e52477a15cd5a2c34526627f776c46a2",
+          "gitBlob": "91187951ffd73c7dcb3aeb873ba46c340d4cab85"
+        }
+      ]
+    },
+    {
+      "group": "schG1",
+      "metadataPath": "msMeta/Schema_w3c.xml",
+      "tests": [
+        {
+          "name": "schG1",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schG1_a.xsd",
+              "bytes": 634,
+              "sha256": "53c77fe964d4d9a6482a3465e8cf2cdfad31915ddb072835f526bbb1e6ca978f",
+              "gitBlob": "0a58c2a67010a117564ae531004a6d817a836690"
+            }
+          ]
+        },
+        {
+          "name": "schG1.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "date": "2006-07-16",
+            "status": "accepted"
+          },
+          "sources": [
+            {
+              "path": "msData/schema/schG1.xml",
+              "bytes": 323,
+              "sha256": "af28d35f307d6cf4039174013ea25767e6c6c35baf0df56b7fc20afd796d6789",
+              "gitBlob": "5b0eb30e0ee37d89b9d66102554899bebf524410"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/schema/schG1_a.xsd",
+          "bytes": 634,
+          "sha256": "53c77fe964d4d9a6482a3465e8cf2cdfad31915ddb072835f526bbb1e6ca978f",
+          "gitBlob": "0a58c2a67010a117564ae531004a6d817a836690"
+        },
+        {
+          "path": "msData/schema/schG1_b.xsd",
+          "bytes": 424,
+          "sha256": "0a9d8758eef31879204d6c3a176ae2e9cfe42059d772e5114c60fc0245db1fb1",
+          "gitBlob": "c70aabe0ed8f5b7ef1fca1891a274f4542fb2af9"
+        },
+        {
+          "path": "msData/schema/schG1_c.xsd",
+          "bytes": 361,
+          "sha256": "cd6c5fa92a551ec4f9926b9336d329fbf20296b89165f5d7f87e8563c04579a6",
+          "gitBlob": "2d08f363869a0b6a1881bd73b1976d4cc9cc622f"
+        }
+      ]
+    },
+    {
+      "group": "idA002",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idA002",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idA002.xsd",
+              "bytes": 628,
+              "sha256": "613349aea43119dc59094b6a0eca49b8c5c853341bb969e26b5130166ef6b150",
+              "gitBlob": "fff8b07e03ee391f57788e3b53d5bff623025f6d"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idA002.xsd",
+          "bytes": 628,
+          "sha256": "613349aea43119dc59094b6a0eca49b8c5c853341bb969e26b5130166ef6b150",
+          "gitBlob": "fff8b07e03ee391f57788e3b53d5bff623025f6d"
+        }
+      ]
+    },
+    {
+      "group": "idZ005",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ005",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ005.xsd",
+              "bytes": 1245,
+              "sha256": "5d5e351a3631f6cf62f983e6b05cd903120fc3d275f4f2af544029df5b295b35",
+              "gitBlob": "91a05d82bb4b971d7e1359889c2e6c446fefafc4"
+            }
+          ]
+        },
+        {
+          "name": "idZ005.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ005.xml",
+              "bytes": 180,
+              "sha256": "68c36cd9b80415a3c4130fb4a9b52317bfafb2a2084e5b1f5e3cf970fe4b6e83",
+              "gitBlob": "29cbbe6551eb8daeb6571b222021a959b1cf5c57"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ005.xsd",
+          "bytes": 1245,
+          "sha256": "5d5e351a3631f6cf62f983e6b05cd903120fc3d275f4f2af544029df5b295b35",
+          "gitBlob": "91a05d82bb4b971d7e1359889c2e6c446fefafc4"
+        }
+      ]
+    },
+    {
+      "group": "idZ006",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ006",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ006.xsd",
+              "bytes": 1929,
+              "sha256": "3e0e552ac98127a5917fc692e953461502d96a6d714e2a5577bf0bc9e3bbe409",
+              "gitBlob": "3df06aa1616cc8eeee63510631910665b5338f09"
+            }
+          ]
+        },
+        {
+          "name": "idZ006.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ006.xml",
+              "bytes": 834,
+              "sha256": "a7fac90cdddde7e879c2ca88fd92f55089ca5bc9cc110e7dc2f636617d518683",
+              "gitBlob": "1dec47950f7ed2ce98f52de36ae7f4a39488a89f"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ006.xsd",
+          "bytes": 1929,
+          "sha256": "3e0e552ac98127a5917fc692e953461502d96a6d714e2a5577bf0bc9e3bbe409",
+          "gitBlob": "3df06aa1616cc8eeee63510631910665b5338f09"
+        }
+      ]
+    },
+    {
+      "group": "idZ007",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ007",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ007.xsd",
+              "bytes": 1530,
+              "sha256": "3c61c522ed1cebe8235eaffa1c2a7a761e1c3eb0c09a355550bf71d1195df067",
+              "gitBlob": "3533d574525e02c2fb5b37a64daabd5b7815d1dd"
+            }
+          ]
+        },
+        {
+          "name": "idZ007.v",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ007.xml",
+              "bytes": 234,
+              "sha256": "5afe16de0a7a7f86d708f896200822cd2332a9a69d41c7414b9f239122a46ccf",
+              "gitBlob": "ea1f6081055b432c9ccbdf6439c6cd67e77ddc0e"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ007.xsd",
+          "bytes": 1530,
+          "sha256": "3c61c522ed1cebe8235eaffa1c2a7a761e1c3eb0c09a355550bf71d1195df067",
+          "gitBlob": "3533d574525e02c2fb5b37a64daabd5b7815d1dd"
+        }
+      ]
+    },
+    {
+      "group": "idZ008",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ008",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ008.xsd",
+              "bytes": 1124,
+              "sha256": "99a6c4737015100548168d1b57359d2703fda701d85ca98b9f6cf3ecb32fc678",
+              "gitBlob": "9e00ba7ddaad6eb138c33ee1a6938852b029c7c3"
+            }
+          ]
+        },
+        {
+          "name": "idZ008.i",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ008.xml",
+              "bytes": 227,
+              "sha256": "212eb6468c16e052793f081b39060d5509199358e11b74bb654f3da0035e0877",
+              "gitBlob": "29a275a82780edc7b37808b66094abd8d7912f5d"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ008.xsd",
+          "bytes": 1124,
+          "sha256": "99a6c4737015100548168d1b57359d2703fda701d85ca98b9f6cf3ecb32fc678",
+          "gitBlob": "9e00ba7ddaad6eb138c33ee1a6938852b029c7c3"
+        }
+      ]
+    },
+    {
+      "group": "idZ010",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ010",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ010.xsd",
+              "bytes": 445,
+              "sha256": "91bd6fc14650028efad62b0d4c16c7fe305d18b41632d1db8b2c7a69ca325cef",
+              "gitBlob": "ca594457d7cee4c31e85154fb50769f473bc9ad3"
+            }
+          ]
+        },
+        {
+          "name": "idZ010.i",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ010.xml",
+              "bytes": 148,
+              "sha256": "a378504957841c63d687cf81a0765b100a8e2c09a009c40d20bf22608d1c892e",
+              "gitBlob": "c37d6e4bff8ce2b370cbdb4cfe8dd089ea86eeac"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ010.xsd",
+          "bytes": 445,
+          "sha256": "91bd6fc14650028efad62b0d4c16c7fe305d18b41632d1db8b2c7a69ca325cef",
+          "gitBlob": "ca594457d7cee4c31e85154fb50769f473bc9ad3"
+        },
+        {
+          "path": "msData/identityConstraint/idZ010b.xsd",
+          "bytes": 1110,
+          "sha256": "bdcffa65627016781a9b0680365d32637eda6ce593416ece3a4062fe1af0b284",
+          "gitBlob": "5dd11fd58e6e5cec3026b28c14a42a560ed43184"
+        }
+      ]
+    },
+    {
+      "group": "idZ012",
+      "metadataPath": "msMeta/IdentityConstraint_w3c.xml",
+      "tests": [
+        {
+          "name": "idZ012",
+          "kind": "schemaTest",
+          "expected": [
+            {
+              "validity": "valid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ012.xsd",
+              "bytes": 210,
+              "sha256": "c1307962a1b4bf6f6134b318284605ba55990717187c2d80e81db33f4e4f5d57",
+              "gitBlob": "f0f0d2caf6c91bd6ad3c45148662de0c6573c68d"
+            }
+          ]
+        },
+        {
+          "name": "idZ012.i",
+          "kind": "instanceTest",
+          "expected": [
+            {
+              "validity": "invalid"
+            }
+          ],
+          "status": {
+            "status": "accepted",
+            "date": "2006-07-16"
+          },
+          "sources": [
+            {
+              "path": "msData/identityConstraint/idZ012.xml",
+              "bytes": 7,
+              "sha256": "6238462c4873df4c50bc1a901ece576b2d166b0156802c88a05a85b1f5d511c7",
+              "gitBlob": "816574cd9bc9bada562c2dd98430befaa7d2cc9e"
+            }
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "path": "msData/identityConstraint/idZ012.xsd",
+          "bytes": 210,
+          "sha256": "c1307962a1b4bf6f6134b318284605ba55990717187c2d80e81db33f4e4f5d57",
+          "gitBlob": "f0f0d2caf6c91bd6ad3c45148662de0c6573c68d"
+        }
+      ]
+    }
+  ]
+}

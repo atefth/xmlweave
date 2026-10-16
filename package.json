@@ -1,8 +1,7 @@
 {
   "name": "xmlweave",
-  "version": "0.1.0-dev.0",
-  "private": true,
-  "description": "Synchronous XML toolkit for JavaScript and TypeScript",
+  "version": "0.1.0",
+  "description": "XML toolkit with DOM, XPath, streaming and native XSD 1.0 validation for JavaScript and TypeScript",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -194,5 +193,9 @@
     "xslt-processor": {
       "optional": true
     }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

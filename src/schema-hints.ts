@@ -8,7 +8,6 @@ import { SchemaError } from "./validation-types.js";
 import type {
   SchemaSource,
   SchemaOptions,
-  SchemaSignal,
   SchemaValidationResult,
   NormalizedSchemaSource,
 } from "./validation-types.js";
@@ -439,9 +438,8 @@ export async function createHintValidator(
   const compiler: HintSchemaCompiler =
     options.compiler ??
     (async (sources, settings) => {
-      const { compileIsolatedXercesSchema } = await import(
-        "./schema-xerces-isolated.js"
-      );
+      const { compileIsolatedXercesSchema } =
+        await import("./schema-xerces-isolated.js");
       return compileIsolatedXercesSchema(sources, settings);
     });
   interface Entry {
@@ -449,7 +447,8 @@ export async function createHintValidator(
     promise: Promise<HintCompiledSchema>;
     handle?: HintCompiledSchema;
     references: number;
-    tail: Promise<void>;
+    active: boolean;
+    waiters: Set<() => void>;
     invalid: boolean;
   }
   const cache = new Map<string, Entry>();
@@ -461,14 +460,27 @@ export async function createHintValidator(
   };
   async function resolveResource(
     request: Readonly<SchemaResourceRequest>,
-    signal: SchemaSignal,
-    timeoutMs?: number,
   ): Promise<SchemaSource> {
     const id = canonical(request.requestedURI);
     const known = resources.get(id);
     if (known) return known;
+    // Resolution belongs to the catalogue, not the first caller waiting for it.
+    const sharedSignal = {
+      get aborted() {
+        return disposed;
+      },
+    };
     const existing = resolving.get(id);
     if (existing) return existing;
+    // A cancelled caller leaves shared resolution alive, so reserve its catalogue slot.
+    const pending = [...resolving.keys()].filter(
+      (key) => !resources.has(key),
+    ).length;
+    if (resources.size + pending >= resourceLimit)
+      throw new SchemaError(
+        "RESOURCE_LIMIT",
+        "Pinned hint catalogue and pending resolutions exceed maxDocuments.",
+      );
     const work = (async () => {
       if (!options.resolver)
         throw new SchemaError(
@@ -480,7 +492,7 @@ export async function createHintValidator(
           Promise.resolve(
             options.resolver!(Object.freeze({ ...request, requestedURI: id })),
           ),
-        { signal, timeoutMs },
+        { signal: sharedSignal, timeoutMs: options.timeoutMs },
         () => disposed,
       );
       if (result === undefined)
@@ -492,7 +504,7 @@ export async function createHintValidator(
         id,
         await normalizeSourceWithDeadline(
           result,
-          { ...options, signal, timeoutMs },
+          { ...options, signal: sharedSignal },
           () => disposed,
         ),
       );
@@ -563,6 +575,9 @@ export async function createHintValidator(
       const ticket = Symbol();
       tickets.add(ticket);
       let owned: Entry | undefined;
+      let started = false;
+      let finished!: () => void;
+      const completion = new Promise<void>((resolve) => (finished = resolve));
       const settings = {
         timeoutMs: options.timeoutMs,
         maxCharacters: options.maxCharacters,
@@ -572,6 +587,13 @@ export async function createHintValidator(
       };
       return withinSourceDeadline(
         async (signal) => {
+          started = true;
+          const wait = <T>(promise: Promise<T>) =>
+            withinSourceDeadline(
+              () => promise,
+              { ...settings, signal },
+              () => disposed,
+            );
           try {
             const normalized = await normalizeSourceWithDeadline(
                 source,
@@ -585,16 +607,16 @@ export async function createHintValidator(
               );
             const selected: SchemaSource[] = [];
             for (const hint of hints) {
-              const resolved = await resolveResource(
-                Object.freeze({
-                  kind: "hint",
-                  namespace: hint.namespace,
-                  systemId: hint.location,
-                  requestedURI: hint.uri,
-                  baseURI: hint.baseURI,
-                }),
-                signal,
-                settings.timeoutMs,
+              const resolved = await wait(
+                resolveResource(
+                  Object.freeze({
+                    kind: "hint",
+                    namespace: hint.namespace,
+                    systemId: hint.location,
+                    requestedURI: hint.uri,
+                    baseURI: hint.baseURI,
+                  }),
+                ),
               );
               const text = await normalizeSourceWithDeadline(
                 resolved,
@@ -617,130 +639,156 @@ export async function createHintValidator(
             const key = JSON.stringify(
               hints.map((hint) => [hint.namespace, hint.uri]),
             );
-            let entry = cache.get(key);
-            if (entry?.invalid || entry?.handle?.disposed) {
-              remove(entry);
-              entry = undefined;
-            }
-            if (!entry) {
-              if (cache.size >= cacheLimit) {
-                const idle = [...cache.values()].find(
-                  (value) => !value.references,
-                );
-                if (!idle)
-                  throw new SchemaError(
-                    "RESOURCE_LIMIT",
-                    "All bounded cached grammars are active.",
-                  );
-                remove(idle);
+            while (true) {
+              let entry = cache.get(key);
+              if (entry?.invalid || entry?.handle?.disposed) {
+                remove(entry);
+                entry = undefined;
               }
-              const {
-                compiler: _compiler,
-                maxCachedSchemas: _cached,
-                maxPendingValidations: _pending,
-                maxHints: _hints,
-                signal: _signal,
-                onDiagnostic: _observer,
-                diagnosticHandler: _handler,
-                errorPolicy: _policy,
-                ...compileOptions
-              } = options;
-              const created: Entry = {
-                key,
-                promise: undefined as unknown as Promise<HintCompiledSchema>,
-                references: 0,
-                tail: Promise.resolve(),
-                invalid: false,
-              };
-              created.promise = compiler(selected, {
-                ...compileOptions,
-                maxBytes: undefined,
-                signal,
-                onDiagnostic: options.onDiagnostic,
-                diagnosticHandler: options.diagnosticHandler,
-                resourceMap: Object.fromEntries(resources),
-                resolver: (request) =>
-                  resolveResource(request, signal, settings.timeoutMs),
-                timeoutMs: settings.timeoutMs,
-              }).then(
-                (handle) => {
-                  created.handle = handle;
-                  if (disposed || created.invalid || signal.aborted) {
-                    if (created.invalid) handle.dispose();
-                    else remove(created);
+              if (!entry) {
+                if (cache.size >= cacheLimit) {
+                  const idle = [...cache.values()].find(
+                    (value) => !value.references,
+                  );
+                  if (!idle)
                     throw new SchemaError(
-                      disposed ? "DISPOSED" : "ABORTED",
-                      "Hint compilation completed after cancellation.",
+                      "RESOURCE_LIMIT",
+                      "All bounded cached grammars are active.",
                     );
-                  }
-                  return handle;
-                },
-                (error) => {
-                  remove(created);
-                  throw error;
-                },
-              );
-              entry = created;
-              cache.set(key, entry);
-            }
-            touch(entry);
-            entry.references++;
-            let unlock!: () => void;
-            const previous = entry.tail;
-            entry.tail = new Promise<void>((resolve) => (unlock = resolve));
-            try {
-              await previous;
-              if (signal.aborted)
-                throw new SchemaError(
-                  disposed ? "DISPOSED" : "ABORTED",
-                  "Hint validation was cancelled.",
-                );
-              const handle = await entry.promise;
-              owned = entry;
-              const metadata = (
-                diagnostic: import("./validation-types.js").SchemaDiagnostic,
-              ) =>
-                Object.freeze({
-                  ...diagnostic,
-                  systemId: diagnostic.systemId ?? normalized.systemId,
-                  sourceKind: normalized.sourceKind,
-                  provenance: normalized.provenance,
-                });
-              const result = await handle.validate(
-                {
-                  kind: "text",
-                  text: normalized.text,
-                  systemId: normalized.systemId,
-                },
-                {
-                  ...settings,
+                  remove(idle);
+                }
+                const {
+                  compiler: _compiler,
+                  maxCachedSchemas: _cached,
+                  maxPendingValidations: _pending,
+                  maxHints: _hints,
+                  signal: _signal,
+                  onDiagnostic: _observer,
+                  diagnosticHandler: _handler,
+                  errorPolicy: _policy,
+                  ...compileOptions
+                } = options;
+                const created: Entry = {
+                  key,
+                  promise: undefined as unknown as Promise<HintCompiledSchema>,
+                  references: 0,
+                  active: false,
+                  waiters: new Set(),
+                  invalid: false,
+                };
+                const compileSignal = {
+                  get aborted() {
+                    return disposed || created.invalid;
+                  },
+                };
+                created.promise = compiler(selected, {
+                  ...compileOptions,
                   maxBytes: undefined,
-                  signal,
-                  diagnosticHandler: operation.diagnosticHandler
-                    ? (diagnostic) =>
-                        operation.diagnosticHandler!(metadata(diagnostic))
-                    : undefined,
-                  onDiagnostic: operation.onDiagnostic
-                    ? (diagnostic) =>
-                        operation.onDiagnostic!(metadata(diagnostic))
-                    : undefined,
-                },
-              );
-              if (handle.disposed) remove(entry);
-              return {
-                ...result,
-                diagnostics: result.diagnostics.map(metadata),
-              };
-            } catch (error) {
-              if (entry.handle?.disposed || owned === entry) remove(entry);
-              throw error;
-            } finally {
-              owned = undefined;
-              entry.references--;
-              unlock();
+                  signal: compileSignal,
+                  onDiagnostic: options.onDiagnostic,
+                  diagnosticHandler: options.diagnosticHandler,
+                  resourceMap: Object.fromEntries(resources),
+                  resolver: (request) => resolveResource(request),
+                  timeoutMs: options.timeoutMs,
+                }).then(
+                  (handle) => {
+                    created.handle = handle;
+                    if (disposed || created.invalid) {
+                      if (created.invalid) handle.dispose();
+                      else remove(created);
+                      throw new SchemaError(
+                        disposed ? "DISPOSED" : "ABORTED",
+                        "Hint compilation completed after cancellation.",
+                      );
+                    }
+                    return handle;
+                  },
+                  (error) => {
+                    remove(created);
+                    throw error;
+                  },
+                );
+                entry = created;
+                cache.set(key, entry);
+              }
+              touch(entry);
+              entry.references++;
+              let acquired = false;
+              let wake: (() => void) | undefined;
+              try {
+                const handle = await wait(entry.promise);
+                await wait(
+                  new Promise<void>((resolve) => {
+                    wake = () => {
+                      if (entry.active) return;
+                      entry.active = true;
+                      acquired = true;
+                      entry.waiters.delete(wake!);
+                      resolve();
+                    };
+                    entry.waiters.add(wake);
+                    wake();
+                  }),
+                );
+                if (signal.aborted)
+                  throw new SchemaError(
+                    disposed ? "DISPOSED" : "ABORTED",
+                    "Hint validation was cancelled.",
+                  );
+                if (entry.invalid || entry.handle?.disposed) continue;
+                owned = entry;
+                const metadata = (
+                  diagnostic: import("./validation-types.js").SchemaDiagnostic,
+                ) =>
+                  Object.freeze({
+                    ...diagnostic,
+                    systemId: diagnostic.systemId ?? normalized.systemId,
+                    sourceKind: normalized.sourceKind,
+                    provenance: normalized.provenance,
+                  });
+                const result = await wait(
+                  handle.validate(
+                    {
+                      kind: "text",
+                      text: normalized.text,
+                      systemId: normalized.systemId,
+                    },
+                    {
+                      ...settings,
+                      maxBytes: undefined,
+                      signal,
+                      diagnosticHandler: operation.diagnosticHandler
+                        ? (diagnostic) =>
+                            operation.diagnosticHandler!(metadata(diagnostic))
+                        : undefined,
+                      onDiagnostic: operation.onDiagnostic
+                        ? (diagnostic) =>
+                            operation.onDiagnostic!(metadata(diagnostic))
+                        : undefined,
+                    },
+                  ),
+                );
+                if (handle.disposed) remove(entry);
+                return {
+                  ...result,
+                  diagnostics: result.diagnostics.map(metadata),
+                };
+              } catch (error) {
+                if (entry.handle?.disposed || owned === entry) remove(entry);
+                throw error;
+              } finally {
+                owned = undefined;
+                entry.references--;
+                if (wake) entry.waiters.delete(wake);
+                if (acquired) {
+                  entry.active = false;
+                  entry.waiters.values().next().value?.();
+                }
+              }
             }
           } finally {
             tickets.delete(ticket);
+            finished();
           }
         },
         settings,
@@ -748,7 +796,10 @@ export async function createHintValidator(
         () => {
           if (owned) remove(owned);
         },
-      );
+      ).finally(async () => {
+        if (started) await completion;
+        else tickets.delete(ticket);
+      });
     },
   };
   return facade;

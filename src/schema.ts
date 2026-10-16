@@ -1,7 +1,7 @@
+import { normalizeSourceWithDeadline } from "./source-deadline.js";
 import { parseXml } from "./index.js";
 import {
   checkSchemaSignal,
-  normalizeSchemaSource,
   sourceLimits,
 } from "./schema-sources.js";
 import {
@@ -196,11 +196,12 @@ function safeXml(
       "Expected an XSD 1.0 schema root.",
       diagnostics(new Error("Expected XSD schema root."), source, "compile"),
     );
-  const stack = [root];
+  const stack = [{ element: root, annotationContent: false }];
   while (stack.length) {
-    const element = stack.pop()!;
+    const { element, annotationContent } = stack.pop()!;
     if (
-      (element.namespaceURI === xsd &&
+      (!annotationContent &&
+        element.namespaceURI === xsd &&
         ["include", "import", "redefine", "override"].includes(
           element.localName,
         )) ||
@@ -226,6 +227,7 @@ function safeXml(
       );
     if (
       schema &&
+      !annotationContent &&
       element.namespaceURI === xsd &&
       ["assert", "alternative", "openContent", "defaultOpenContent"].includes(
         element.localName,
@@ -235,8 +237,18 @@ function safeXml(
         "INVALID_SCHEMA",
         "XSD 1.1 constructs are not supported.",
       );
+    // Annotation payloads are data; security checks still visit every element.
+    const childAnnotationContent =
+      annotationContent ||
+      (schema &&
+        element.namespaceURI === xsd &&
+        ["appinfo", "documentation"].includes(element.localName));
     for (const child of element.childNodes)
-      if (child.nodeType === 1) stack.push(child as typeof element);
+      if (child.nodeType === 1)
+        stack.push({
+          element: child as typeof element,
+          annotationContent: childAnnotationContent,
+        });
   }
 }
 /** Warm the default native engine; the temporary native instance is immediately released. */
@@ -285,7 +297,7 @@ export async function compileSchema(
   checkSchemaSignal(configuration);
   let source: NormalizedSchemaSource;
   try {
-    source = await normalizeSchemaSource(input, configuration);
+    source = await normalizeSourceWithDeadline(input, configuration);
     safeXml(source, true, configuration);
   } catch (cause) {
     if (cause instanceof SchemaError) throw observe(cause, configuration);
@@ -421,7 +433,11 @@ export async function compileSchema(
         try {
           let prepared: NormalizedSchemaSource;
           try {
-            prepared = await normalizeSchemaSource(input, settings);
+            prepared = await normalizeSourceWithDeadline(
+              input,
+              settings,
+              () => dead || disposed,
+            );
             safeXml(prepared, false, settings);
           } catch (cause) {
             if (cause instanceof SchemaError) throw observe(cause, settings);
