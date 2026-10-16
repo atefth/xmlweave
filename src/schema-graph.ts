@@ -227,11 +227,6 @@ export async function prepareSchemaGraph(
         "INVALID_SCHEMA",
         "Expected an XSD schema resource.",
       );
-    if (root.getAttribute("version") === "1.1")
-      throw new SchemaError(
-        "UNSUPPORTED_CAPABILITY",
-        "XSD 1.1 is unsupported.",
-      );
     reserved.add(id);
     namespaces.set(id, root.getAttribute("targetNamespace") ?? "");
     resources[id] = text;
@@ -240,9 +235,9 @@ export async function prepareSchemaGraph(
       provenance: metadata.provenance,
     };
     let rewritten = false;
-    const stack = [root];
+    const stack = [{ element: root, annotationContent: false }];
     while (stack.length) {
-      const el = stack.pop()!;
+      const { element: el, annotationContent } = stack.pop()!;
       if (
         el.namespaceURI === "http://www.w3.org/2001/XInclude" ||
         el.hasAttributeNS(XSI, "schemaLocation") ||
@@ -253,6 +248,7 @@ export async function prepareSchemaGraph(
           "Schema resources cannot use XInclude or instance hints.",
         );
       if (
+        !annotationContent &&
         el.namespaceURI === XSD &&
         [
           "assert",
@@ -267,6 +263,7 @@ export async function prepareSchemaGraph(
           "XSD 1.1 constructs are unsupported.",
         );
       if (
+        !annotationContent &&
         el.namespaceURI === XSD &&
         ["include", "import", "redefine"].includes(el.localName)
       ) {
@@ -355,8 +352,17 @@ export async function prepareSchemaGraph(
             "Schema resource target namespace does not match its composition directive.",
           );
       }
+      // Annotation payloads are data; security checks still visit every element.
+      const childAnnotationContent =
+        annotationContent ||
+        (el.namespaceURI === XSD &&
+          ["appinfo", "documentation"].includes(el.localName));
       for (const child of Array.from(el.childNodes))
-        if (child.nodeType === 1) stack.push(child as typeof root);
+        if (child.nodeType === 1)
+          stack.push({
+            element: child as typeof root,
+            annotationContent: childAnnotationContent,
+          });
     }
     if (rewritten) {
       resources[id] = serializeXml(doc);

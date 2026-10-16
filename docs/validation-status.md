@@ -1,10 +1,10 @@
 # Java validation parity: implementation and acceptance
 
-The [requirements assessment](validation-parity.md) is a dated baseline, not a description of the current implementation. Delivery and acceptance are tracked on the [project board](https://github.com/users/atefth/projects/3). Independent review and the final coherent local package checks are complete. Required PR CI and merge remain the closure gates; this page does not claim an npm release.
+The [requirements assessment](validation-parity.md) is a dated baseline, not a description of the current implementation. Delivery and acceptance are tracked on the [project board](https://github.com/users/atefth/projects/3). Independent review and the final coherent local package checks are complete. The [implementation PR](https://github.com/atefth/xmlweave/pull/78) is merged and all 18 CI jobs passed. A follow-up requirements review is tracking release corrections; npm publication remains pending.
 
 | Contract | Implementation and evidence | Acceptance state |
 | --- | --- | --- |
-| Default XSD 1.0 validator | Packaged native Xerces; no Java or libxml peer required. The 43 original feature groups match 123 Java reference expectations. | Accepted locally; PR CI required |
+| Default XSD 1.0 validator | Packaged native Xerces; no Java or libxml peer required. The 63 original feature groups match 183 Java reference expectations. | Merged; complete CI passed |
 | Sources and sessions | Original text/bytes/chunks/DOM, strict decoding, source IDs/provenance, immutable limits, independent sessions and bounded shared-grammar scheduling | Regression tests pass |
 | Schema composition | Explicit canonical catalogue/resolver, include/import/redefine, schema sets, private workers, collision-free generated identities and generated-source provenance | Graph provenance and budget regressions pass |
 | Incremental validation | Native SAX/PSVI and optional Java ValidatorHandler; bounded input/output backpressure, errors before EOF and late keyref checks | Node and packaged browser evidence |
@@ -14,10 +14,10 @@ The [requirements assessment](validation-parity.md) is a dated baseline, not a d
 | Locations | Original source positions or explicit generated provenance; bounded supplied-event-point correlation with native coordinates retained | Regression tests pass; no invented lexical offsets |
 | Dynamic instance hints | Per-document approved root/descendant hints, inherited base resolution, immutable pinned catalogue and bounded LRU/native worker cache | Seven focused tests pass; packaged browser cases included |
 | Hard budgets | Native worker deadlines/abort, source/resolver deadlines, depth 256, nodes 100,000 and bounded queues | Integrated regression tests pass |
-| Conformance evidence | 13 complete pinned W3C/NIST groups: 65 unchanged instances, 40 valid and 25 invalid, across eight datatype families; original metadata/license/hashes retained | Node and all three browser engines passed selected corpus |
+| Conformance evidence | 13 pinned W3C/NIST datatype groups (65 instances) plus 19 complete structural/identity groups (32 schema/instance expectations); original metadata/license/hashes retained | Node and all three browser engines passed selected corpus |
 | Packaging | Explicit provider entry points, ESM/CJS identity, ES-only declarations on TypeScript 5.9.3/7.0.2, native assets/licenses and pinned rebuild inputs | Final packed consumers pass on both supported TypeScript versions |
 
-The final coherent build passes **236 Node tests**, **345 packed validation-browser assertions** (115 each in Chromium, Firefox and WebKit), packed consumer checks on **TypeScript 5.9.3 and 7.0.2**, and **123 Java reference expectations**. These runs include the final anonymous-type queries, namespace/default-output repairs, exact diagnostic handlers, cancellation and Ponytail budget regressions. Native source and runtime hashes match the pinned rebuild provenance.
+The final coherent build passes **326 Node tests**, **990 packed validation-browser assertions** (330 each in Chromium, Firefox and WebKit), packed consumer checks on **TypeScript 5.9.3 and 7.0.2**, and **183 Java reference expectations**. These runs include the final anonymous-type queries, namespace/default-output repairs, exact diagnostic handlers, cancellation and Ponytail budget regressions. Native source and runtime hashes match the pinned rebuild provenance.
 
 There are currently 13 executable public entry points plus the package metadata export; the README lists each companion explicitly.
 

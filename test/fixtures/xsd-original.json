@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "license": "MIT",
   "origin": "Original XMLWeave regression fixtures; not an authoritative W3C suite",
   "fixtures": [
@@ -743,6 +743,379 @@
       "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:restriction base=\"xs:int\"><xs:minInclusive value=\"not-number\"/></xs:restriction></xs:simpleType></xs:element></xs:schema>",
       "schemaValid": false,
       "instances": []
+    },
+    {
+      "id": "element-block-extension",
+      "feature": "element block extension",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cElement_Declarations",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:complexType name=\"Base\"><xs:sequence><xs:element name=\"a\" type=\"xs:int\"/></xs:sequence></xs:complexType><xs:complexType name=\"Derived\"><xs:complexContent><xs:extension base=\"Base\"><xs:sequence><xs:element name=\"b\" type=\"xs:int\"/></xs:sequence></xs:extension></xs:complexContent></xs:complexType><xs:element name=\"r\" type=\"Base\" block=\"extension\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "base",
+          "xml": "<r><a>1</a></r>",
+          "valid": true
+        },
+        {
+          "id": "blocked-derived",
+          "xml": "<r xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"Derived\"><a>1</a><b>2</b></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "element-block-substitution",
+      "feature": "element block substitution",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cElement_Declarations",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"head\" type=\"xs:int\" block=\"substitution\"/><xs:element name=\"member\" type=\"xs:int\" substitutionGroup=\"head\"/><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element ref=\"head\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "head",
+          "xml": "<r><head>1</head></r>",
+          "valid": true
+        },
+        {
+          "id": "blocked-member",
+          "xml": "<r><member>1</member></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "type-final-extension",
+      "feature": "type final extension",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cType_Definition",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:complexType name=\"Base\" final=\"extension\"><xs:sequence><xs:element name=\"a\" type=\"xs:int\"/></xs:sequence></xs:complexType><xs:complexType name=\"Derived\"><xs:complexContent><xs:extension base=\"Base\"><xs:sequence><xs:element name=\"b\" type=\"xs:int\"/></xs:sequence></xs:extension></xs:complexContent></xs:complexType></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "type-final-restriction",
+      "feature": "type final restriction",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cType_Definition",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:complexType name=\"Base\" final=\"restriction\"><xs:sequence><xs:element name=\"a\" type=\"xs:int\"/></xs:sequence></xs:complexType><xs:complexType name=\"Derived\"><xs:complexContent><xs:restriction base=\"Base\"><xs:sequence><xs:element name=\"a\" type=\"xs:int\"/></xs:sequence></xs:restriction></xs:complexContent></xs:complexType></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "simple-type-final-restriction",
+      "feature": "simple type final restriction",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cType_Definition",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:simpleType name=\"Base\" final=\"restriction\"><xs:restriction base=\"xs:int\"/></xs:simpleType><xs:simpleType name=\"Derived\"><xs:restriction base=\"Base\"><xs:minInclusive value=\"0\"/></xs:restriction></xs:simpleType></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-upa-ambiguous-particles",
+      "feature": "schema upa ambiguous particles",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cos-nonambig",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:choice><xs:element name=\"a\" type=\"xs:int\"/><xs:element name=\"a\" type=\"xs:string\"/></xs:choice></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-upa-element-wildcard",
+      "feature": "schema upa element wildcard",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cos-nonambig",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:choice><xs:element name=\"a\"/><xs:any processContents=\"skip\"/></xs:choice></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-illegal-complex-restriction",
+      "feature": "schema illegal complex restriction",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cType_Definition",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:complexType name=\"Base\"><xs:sequence><xs:element name=\"a\" type=\"xs:int\"/></xs:sequence></xs:complexType><xs:complexType name=\"Derived\"><xs:complexContent><xs:restriction base=\"Base\"><xs:sequence><xs:element name=\"b\" type=\"xs:int\"/></xs:sequence></xs:restriction></xs:complexContent></xs:complexType></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-illegal-simple-facet-restriction",
+      "feature": "schema illegal simple facet restriction",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cType_Definition",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:simpleType name=\"Base\"><xs:restriction base=\"xs:int\"><xs:maxInclusive value=\"5\"/></xs:restriction></xs:simpleType><xs:simpleType name=\"Derived\"><xs:restriction base=\"Base\"><xs:maxInclusive value=\"10\"/></xs:restriction></xs:simpleType></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "wildcard-element-strict",
+      "feature": "wildcard element strict",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:any processContents=\"strict\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r><known>2</known></r>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r><known>bad</known></r>",
+          "valid": false
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r><unknown>bad</unknown></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "wildcard-attribute-strict",
+      "feature": "wildcard attribute strict",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:attribute name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:anyAttribute processContents=\"strict\"/></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r known=\"2\"/>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r known=\"bad\"/>",
+          "valid": false
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r unknown=\"bad\"/>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "wildcard-element-lax",
+      "feature": "wildcard element lax",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:any processContents=\"lax\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r><known>2</known></r>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r><known>bad</known></r>",
+          "valid": false
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r><unknown>bad</unknown></r>",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "id": "wildcard-attribute-lax",
+      "feature": "wildcard attribute lax",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:attribute name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:anyAttribute processContents=\"lax\"/></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r known=\"2\"/>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r known=\"bad\"/>",
+          "valid": false
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r unknown=\"bad\"/>",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "id": "wildcard-element-skip",
+      "feature": "wildcard element skip",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:any processContents=\"skip\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r><known>2</known></r>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r><known>bad</known></r>",
+          "valid": true
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r><unknown>bad</unknown></r>",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "id": "wildcard-attribute-skip",
+      "feature": "wildcard attribute skip",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cWildcards",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:attribute name=\"known\" type=\"xs:int\"/><xs:element name=\"r\"><xs:complexType><xs:anyAttribute processContents=\"skip\"/></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared-valid",
+          "xml": "<r known=\"2\"/>",
+          "valid": true
+        },
+        {
+          "id": "declared-invalid",
+          "xml": "<r known=\"bad\"/>",
+          "valid": true
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r unknown=\"bad\"/>",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "id": "id-idref-idrefs-document-resolution",
+      "feature": "id idref idrefs document resolution",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cvc-id",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"item\" minOccurs=\"0\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"id\" type=\"xs:ID\"/><xs:attribute name=\"ref\" type=\"xs:IDREF\"/><xs:attribute name=\"refs\" type=\"xs:IDREFS\"/></xs:complexType></xs:element></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "forward",
+          "xml": "<r><item ref=\"later\" refs=\"later other\"/><item id=\"later\"/><item id=\"other\"/></r>",
+          "valid": true
+        },
+        {
+          "id": "duplicate",
+          "xml": "<r><item id=\"one\"/><item id=\"one\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "dangling-ref",
+          "xml": "<r><item ref=\"missing\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "dangling-list-member",
+          "xml": "<r><item id=\"one\"/><item refs=\"one missing\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "empty-list",
+          "xml": "<r><item refs=\"\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "invalid-name",
+          "xml": "<r><item id=\"1bad\"/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "notation-declared-qname-values",
+      "feature": "notation declared qname values",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cNotations",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:notation name=\"gif\" public=\"image/gif\"/><xs:notation name=\"jpeg\" public=\"image/jpeg\"/><xs:simpleType name=\"Format\"><xs:restriction base=\"xs:NOTATION\"><xs:enumeration value=\"gif\"/><xs:enumeration value=\"jpeg\"/></xs:restriction></xs:simpleType><xs:element name=\"r\" type=\"Format\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "declared",
+          "xml": "<r>gif</r>",
+          "valid": true
+        },
+        {
+          "id": "other-declared",
+          "xml": "<r>jpeg</r>",
+          "valid": true
+        },
+        {
+          "id": "undeclared",
+          "xml": "<r>png</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "typed-multifield-unique",
+      "feature": "typed multifield unique",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"item\" minOccurs=\"0\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"code\" type=\"xs:decimal\"/><xs:attribute name=\"region\" type=\"xs:string\"/></xs:complexType></xs:element></xs:sequence></xs:complexType><xs:unique name=\"u\"><xs:selector xpath=\"item\"/><xs:field xpath=\"@code\"/><xs:field xpath=\"@region\"/></xs:unique></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "different-tuples",
+          "xml": "<r><item code=\"1\" region=\"a\"/><item code=\"1.0\" region=\"b\"/></r>",
+          "valid": true
+        },
+        {
+          "id": "typed-equivalent-duplicate",
+          "xml": "<r><item code=\"01.00\" region=\"a\"/><item code=\"1.0\" region=\"a\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "missing-field",
+          "xml": "<r><item code=\"1\"/><item code=\"1\"/></r>",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "id": "typed-multifield-key",
+      "feature": "typed multifield key",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"item\" minOccurs=\"0\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"code\" type=\"xs:decimal\"/><xs:attribute name=\"region\" type=\"xs:string\"/></xs:complexType></xs:element></xs:sequence></xs:complexType><xs:key name=\"u\"><xs:selector xpath=\"item\"/><xs:field xpath=\"@code\"/><xs:field xpath=\"@region\"/></xs:key></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "different-tuples",
+          "xml": "<r><item code=\"1\" region=\"a\"/><item code=\"1.0\" region=\"b\"/></r>",
+          "valid": true
+        },
+        {
+          "id": "typed-equivalent-duplicate",
+          "xml": "<r><item code=\"01.00\" region=\"a\"/><item code=\"1.0\" region=\"a\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "missing-field",
+          "xml": "<r><item code=\"1\"/><item code=\"1\"/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "typed-multifield-keyref",
+      "feature": "typed multifield keyref",
+      "specification": "https://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" ><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"item\" minOccurs=\"0\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"code\" type=\"xs:decimal\"/><xs:attribute name=\"region\" type=\"xs:string\"/></xs:complexType></xs:element><xs:element name=\"ref\" minOccurs=\"0\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"code\" type=\"xs:decimal\"/><xs:attribute name=\"region\" type=\"xs:string\"/></xs:complexType></xs:element></xs:sequence></xs:complexType><xs:key name=\"k\"><xs:selector xpath=\"item\"/><xs:field xpath=\"@code\"/><xs:field xpath=\"@region\"/></xs:key><xs:keyref name=\"kr\" refer=\"k\"><xs:selector xpath=\"ref\"/><xs:field xpath=\"@code\"/><xs:field xpath=\"@region\"/></xs:keyref></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "typed-equivalent",
+          "xml": "<r><item code=\"1.0\" region=\"a\"/><ref code=\"01.00\" region=\"a\"/></r>",
+          "valid": true
+        },
+        {
+          "id": "different-second-field",
+          "xml": "<r><item code=\"1\" region=\"a\"/><ref code=\"1\" region=\"b\"/></r>",
+          "valid": false
+        },
+        {
+          "id": "missing-reference-field",
+          "xml": "<r><item code=\"1\" region=\"a\"/><ref code=\"1\"/></r>",
+          "valid": true
+        }
+      ]
     }
   ]
 }

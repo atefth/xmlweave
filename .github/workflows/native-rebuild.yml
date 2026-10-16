@@ -1,0 +1,71 @@
+name: Native rebuild
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/native-rebuild.yml"
+      - "native/**"
+      - "scripts/build-xerces.py"
+      - "scripts/build.mjs"
+      - "scripts/validation-browser.mjs"
+      - "package.json"
+      - "package-lock.json"
+permissions:
+  contents: read
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: sudo apt-get update && sudo apt-get install -y cmake ninja-build
+      - run: npm ci
+      - name: Preserve committed runtime hashes
+        run: cp native/runtime/provenance.json "$RUNNER_TEMP/committed-native-provenance.json"
+      # No restored compiler/build cache: this verifies a clean pinned-source rebuild.
+      - run: npm run build:native
+      - name: Compare clean rebuild with committed runtime
+        run: |
+          python - <<'PY'
+          import json, os, platform
+          from pathlib import Path
+          committed = json.loads((Path(os.environ['RUNNER_TEMP']) / 'committed-native-provenance.json').read_text())
+          rebuilt = json.loads(Path('native/runtime/provenance.json').read_text())
+          comparison = {
+              'platform': platform.platform(),
+              'committed': committed,
+              'rebuilt': rebuilt,
+              'identicalHashes': committed['sha256'] == rebuilt['sha256'],
+              'scope': 'Clean pinned rebuild plus runtime acceptance; differing hashes require review and do not establish bit-for-bit reproducibility.'
+          }
+          Path('native/runtime/rebuild-comparison.json').write_text(json.dumps(comparison, indent=2) + '\n')
+          print(json.dumps(comparison, indent=2))
+          if not comparison['identicalHashes']:
+              print('::warning::Clean rebuild differs from committed hashes. Review comparison artifact before claiming bit-for-bit reproducibility.')
+          PY
+      - run: npm run build
+      - run: npm test
+      - run: npm run test:java-reference
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:validation-browser
+        env:
+          XMLWEAVE_SKIP_BUILD: "1"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rebuilt-native-runtime
+          path: |
+            native/runtime/provenance.json
+            native/runtime/rebuild-comparison.json
+            native/runtime/xerces-engine.js
+            native/runtime/xerces-engine.wasm

@@ -1,0 +1,35 @@
+name: Java compatibility
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  java:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['17', '21', '25']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:java-reference
+      - run: node scripts/compare-java-external.mjs
+      - run: node --test test/schema-java.test.mjs test/schema-java-default-references.test.mjs test/schema-providers.test.mjs test/xsd-w3c-structures.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: java-${{ matrix.java }}-conformance
+          path: |
+            .artifacts/java-conformance.json
+            .artifacts/java-external-conformance.json

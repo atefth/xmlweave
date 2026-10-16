@@ -1006,6 +1006,7 @@ export async function validateSource(
   resultFamily: ValidationResultFamily = "none",
   options: PipelineOptions = {},
 ): Promise<ValidationPipelineResult | ValidationEventPipeline> {
+  const nativeOptions = pipelineOptions(options);
   if (!input || !["stream", "dom", "sax", "stax"].includes(input.family))
     invalid("Unsupported source family.");
   if (
@@ -1093,7 +1094,6 @@ export async function validateSource(
             () => provider.disposed,
           )
         : undefined;
-  const nativeOptions = pipelineOptions(options);
   const metadata = (
     diagnostic: Readonly<SchemaDiagnostic>,
   ): Readonly<SchemaDiagnostic> =>
@@ -1107,20 +1107,40 @@ export async function validateSource(
           }
         : { provenance: "generated" as const }),
     });
+  let callbackFailed = false;
+  let callbackError: unknown;
+  const rememberCallbackError = (error: unknown): never => {
+    callbackFailed = true;
+    callbackError = error;
+    throw error;
+  };
   if (normalized && nativeOptions.onDiagnostic) {
     const observer = nativeOptions.onDiagnostic;
-    nativeOptions.onDiagnostic = (d) => observer(metadata(d));
+    nativeOptions.onDiagnostic = (d) => {
+      try {
+        observer(metadata(d));
+      } catch (error) {
+        rememberCallbackError(error);
+      }
+    };
   }
   if (normalized && nativeOptions.diagnosticHandler) {
     const handler = nativeOptions.diagnosticHandler;
-    nativeOptions.diagnosticHandler = (d) => handler(metadata(d));
+    nativeOptions.diagnosticHandler = (d) => {
+      try {
+        const pending = handler(metadata(d));
+        return pending?.catch(rememberCallbackError);
+      } catch (error) {
+        return rememberCallbackError(error);
+      }
+    };
   }
   const upstream = normalized
     ? provider.validateStream(
         markNormalizedTransport([normalized.text], normalized),
         {
           ...nativeOptions,
-          systemId: normalized.systemId,
+          systemId: normalized.systemId ?? nativeOptions.systemId,
         },
       )
     : validateEventStream(
@@ -1130,18 +1150,34 @@ export async function validateSource(
       );
   const events: AsyncIterable<NativeValidationEvent> = {
     async *[Symbol.asyncIterator]() {
-      for await (const event of upstream) {
-        if (event.kind === "diagnostic")
-          yield { ...event, diagnostic: metadata(event.diagnostic) };
-        else if (event.kind === "result")
-          yield {
-            ...event,
-            result: {
-              ...event.result,
-              diagnostics: event.result.diagnostics.map(metadata),
-            },
-          };
-        else yield event;
+      try {
+        for await (const event of upstream) {
+          if (event.kind === "diagnostic")
+            yield { ...event, diagnostic: metadata(event.diagnostic) };
+          else if (event.kind === "result")
+            yield {
+              ...event,
+              result: {
+                ...event.result,
+                diagnostics: event.result.diagnostics.map(metadata),
+              },
+            };
+          else yield event;
+        }
+      } catch (error) {
+        if (
+          normalized &&
+          error instanceof SchemaError &&
+          !(callbackFailed && Object.is(error, callbackError))
+        )
+          throw new SchemaError(
+            error.code,
+            error.message,
+            error.diagnostics.map(metadata),
+            error.cause,
+            error.diagnosticsTruncated,
+          );
+        throw error;
       }
     },
   };

@@ -182,7 +182,7 @@ const { transformXml } = require('xmlweave/transform');
       "process.stdout.write(JSON.stringify(require('xmlweave/package.json')))",
     ]),
   );
-  assert.equal(metadata.version, "0.1.0-dev.0");
+  assert.equal(metadata.version, JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8")).version);
   console.log(
     `Packed consumer checks passed: Node ${process.version}, TypeScript ${version}, all public entry points, ES-only declarations, optional peers absent/present and mixed ESM/CJS identity.`,
   );

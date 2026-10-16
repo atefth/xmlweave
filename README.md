@@ -2,18 +2,38 @@
 
 [![CI](https://github.com/atefth/xmlweave/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/atefth/xmlweave/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-a7f3d0?style=flat-square)](LICENSE)
-[![Source preview](https://img.shields.io/badge/source-0.1.0--dev.0-c4b5fd?style=flat-square)](CHANGELOG.md)
+[![npm version](https://img.shields.io/npm/v/xmlweave?style=flat-square&color=c4b5fd)](https://www.npmjs.com/package/xmlweave)
 [![Roadmap](https://img.shields.io/badge/roadmap-on_the_loom-fbcfe8?style=flat-square)](https://github.com/users/atefth/projects/3)
 
 **Small API. Structured chaos. XML, with better vibes.** ✨
 
 A TypeScript-first XML toolkit for JavaScript and TypeScript, inspired by Java `javax.xml`.
 
-**Status: source preview; no npm release.** A small synchronous XML core, plus optional XPath, streaming, XSD validation and XSLT companions. Each comes with explicit policies, tested boundaries and its own entry point. See the [engine decisions](docs/decisions.md), [roadmap board](https://github.com/users/atefth/projects/3) and [issues](https://github.com/atefth/xmlweave/issues).
+**XMLWeave 0.1.0.** A small synchronous XML core, plus optional XPath, streaming, XSD validation and XSLT companions. Each comes with explicit policies, tested boundaries and its own entry point. See the [engine decisions](docs/decisions.md), [roadmap board](https://github.com/users/atefth/projects/3) and [issues](https://github.com/atefth/xmlweave/issues).
 
 ## 🛠️ Get it spinning
 
-Use Node 22 or 24. Clone this repository, run `npm ci` and `npm run build`. `npm pack` creates an installable development tarball; install its absolute path in your consumer with `npm install /path/to/xmlweave-0.1.0-dev.0.tgz`. The package is private to prevent accidental registry publication. XMLWeave is licensed under MIT.
+Use Node 22 or 24. Install the package:
+
+```sh
+npm install xmlweave
+```
+
+For source development, clone the repository, run `npm ci` and `npm run build`, then `npm pack`. Install the resulting tarball in another project with `npm install /absolute/path/to/xmlweave-0.1.0.tgz`. XMLWeave is MIT licensed.
+
+### 🧭 Start here
+
+1. Use the core example below to parse, change and serialize XML.
+2. For a single XSD, use `compileSchema` in the validation example. No Java installation or extra schema peer is needed.
+3. For schemas with imports/includes, streaming validation, hard deadlines or type information, use the [isolated native provider](docs/schema-xerces-isolated.md). Supply dependencies through an explicit catalogue or resolver and dispose the grammar after use.
+4. Add [event/output adapters](docs/schema-pipeline.md) for SAX/pull events and validated text, bytes or copied DOM output. Choose [dynamic hints](docs/schema-hints.md) only when documents select their approved schemas.
+5. Browser users should follow the [worker/WASM setup](docs/schema-xerces-isolated.md). Exact diagnostic decisions require cross-origin isolation; ordinary validation observers do not.
+
+### ✨ Fresh off the loom
+
+XSD validation now includes strict byte/DOM/chunk sources, reusable sessions, safe multi-file schema graphs, genuine incremental native validation, schema-derived type information and namespace-correct augmented output. Validation can run in a dedicated worker with enforced deadlines, cancellation and bounded backpressure. An explicit [Java provider](docs/schema-java.md) is available for Node users with the tested OpenJDK-derived JDK; it is not required by the native/browser providers.
+
+The supported baseline is **XSD 1.0**, with secure explicit resolution and no DTD processing. Dynamic hint discovery buffers bounded input; precompiled native providers offer incremental validation. These are documented JavaScript equivalents of the Java validation API, not a claim of every Java extension or universal XSD conformance.
 
 ```js
 import { parseXml, mutateXml, serializeXml } from 'xmlweave';
@@ -97,6 +117,41 @@ try {
 
 Browse the focused guides: [XPath](docs/xpath.md) · [streaming](docs/streaming.md) · [schema validation](docs/schema.md) · [transformations](docs/transformations.md). Browser schema validation uses packaged native ESM/WASM assets; its guide includes the tested setup. See [isolated validation](docs/schema-xerces-isolated.md), [native types](docs/schema-xerces.md), [event/output adapters](docs/schema-pipeline.md), [optional Java](docs/schema-java.md), and the [current acceptance ledger](docs/validation-status.md) and [requirements baseline](docs/validation-parity.md). See [dynamic hints](docs/schema-hints.md) for document-driven schema selection and [factory examples](docs/schema-pipeline.md#shipped-provider-factories) for explicit provider negotiation. The other companions are tested as esbuild browser bundles. The transformation peer is LGPL-3.0 and remains external to the distributed XMLWeave artifact; retain its own license when distributing it.
 
+### 🧩 Schemas with includes and imports
+
+Use a dedicated worker when schemas span files or validation needs a hard deadline.
+These identifiers are catalogue keys; XMLWeave does not fetch them from the web.
+
+```js
+import { compileIsolatedXercesSchema } from 'xmlweave/schema-xerces-isolated';
+
+const grammar = await compileIsolatedXercesSchema({
+  kind: 'text',
+  systemId: 'https://schemas.example/root.xsd',
+  text: `<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="types.xsd"/>
+  </xs:schema>`,
+}, {
+  resourceMap: {
+    'https://schemas.example/types.xsd': `
+      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="answer" type="xs:int"/>
+      </xs:schema>`,
+  },
+  timeoutMs: 30000,
+});
+try {
+  const result = await grammar.validate('<answer>42</answer>');
+  console.log(result.valid); // true
+} finally { grammar.dispose(); }
+```
+
+A schema-invalid document normally returns `valid: false` and diagnostics.
+Bad arguments, forbidden resources, cancellation and execution failures throw
+`SchemaError`; inspect its stable `code` rather than matching engine messages.
+A terminated isolated grammar is disposed: compile a new one after cancellation
+or a hard timeout. See the provider guide for callback and session lifetimes.
+
 ## 🪡 Four stitches, one document
 
 | API | Behavior |
@@ -131,7 +186,7 @@ Options may lower the defaults: `maxLength: 1_000_000` UTF-16 code units per sou
 
 `npm test` runs original regression fixtures, engine comparisons, companion security policies, a large generated stream and repeated WASM lifecycle checks. `npm run test:consumers` installs the actual packed tarball into an isolated project and checks all public entry points, missing/present optional peers, JavaScript ESM/CJS interchange and strict TypeScript declarations with no ambient DOM/Node types. `npm run test:browser` bundles packed core/XPath/streaming/transform code for real Chromium, Firefox and WebKit; `npm run test:schema-browser` verifies the native ESM/WASM setup in those same engines. Install browser test tools once with `npx playwright install chromium firefox webkit` (`--with-deps` on Linux). `npm run test:validation-browser` tests the installed native worker artifact and selected original W3C/NIST corpus in all three engines. `npm run test:java-reference` requires Java and checks the original regression catalogue. `npm run check` runs these checks, including the build.
 
-The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with Node16/NodeNext/bundler resolution, and Playwright 1.64.1 browser engines with esbuild 0.28.2. Compatibility applies to the passing fixture combinations; other bundlers, browsers, Node versions or arbitrary TypeScript configurations are unverified. Conformance evidence includes 43 original regression groups (123 Java reference expectations) and 13 complete pinned W3C/NIST groups containing 65 unchanged instances across eight datatype families. This selected coverage is not the complete W3C conformance suite. See the [acceptance ledger](docs/validation-status.md) for completed runs and final-review status.
+The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with Node16/NodeNext/bundler resolution, and Playwright 1.64.1 browser engines with esbuild 0.28.2. Compatibility applies to the passing fixture combinations; other bundlers, browsers, Node versions or arbitrary TypeScript configurations are unverified. Conformance evidence includes 63 original regression groups (183 Java reference expectations), 13 complete pinned W3C/NIST groups containing 65 unchanged instances, and 19 complete external structural/identity groups containing 32 schema/instance expectations. This selected coverage is not the complete W3C conformance suite. See the [acceptance ledger](docs/validation-status.md) for completed runs and final-review status.
 
 ## 🗺️ On the loom
 
@@ -140,10 +195,10 @@ The CI matrix verifies Node 22/24 on Linux/Windows, TypeScript 5.9.3/7.0.2 with 
 | Parse · create · mutate · serialize | ✅ Available in source |
 | ESM · CommonJS · TypeScript declarations | ✅ Tested packed artifacts |
 | XPath · streaming · schema validation · transformations | ✅ Optional source companions with documented subsets |
-| npm release | 📦 Not published |
+| Package version | 📦 0.1.0 |
 
-The [release checklist](docs/releasing.md) requires the full CI matrix, package inspection, compatibility documentation, dependency notices and an owner-approved license before registry publication. No package has been published. As a pre-1.0 development API, breaking changes require a documented changelog entry and a minor version increment; fixes use patch increments. Future API changes should include migration examples and consumer tests.
+The [release checklist](docs/releasing.md) requires the full CI matrix, package inspection, compatibility documentation, dependency notices and an owner-approved license before registry publication. Registry publication is a separate final step after release checks. As a pre-1.0 API, breaking changes require a documented changelog entry and a minor version increment; fixes use patch increments. Future API changes should include migration examples and consumer tests.
 
-The original scoped roadmap is implemented; Java validation parity is undergoing implementation and independent acceptance review on the project board. Signatures, SOAP, JAXB-style binding and general object mapping were evaluated and deferred with explicit prerequisites in the [scope decision record](docs/future-scope.md). No signature, protocol or binding support is claimed. XPath/XSLT and in-process WASM validation provide no hard execution timeout; the isolated validation provider enforces deadlines by terminating its dedicated worker. Streaming's pinned engine is archived upstream; the [evaluation](docs/streaming.md) records why it passed correctness gates that the tested alternatives failed.
+The original scoped roadmap and Java validation delivery are merged. A fresh requirements review and release corrections are recorded on the project board. Signatures, SOAP, JAXB-style binding and general object mapping were evaluated and deferred with explicit prerequisites in the [scope decision record](docs/future-scope.md). No signature, protocol or binding support is claimed. XPath/XSLT and in-process WASM validation provide no hard execution timeout; the isolated validation provider enforces deadlines by terminating its dedicated worker. Streaming's pinned engine is archived upstream; the [evaluation](docs/streaming.md) records why it passed correctness gates that the tested alternatives failed.
 
 XMLWeave is [MIT licensed](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses and retained copyright notices.

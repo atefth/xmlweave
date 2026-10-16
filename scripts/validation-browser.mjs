@@ -54,16 +54,16 @@ try {
   const corpusManifest = JSON.parse(
     await readFile(join(corpusDirectory, "manifest.json"), "utf8"),
   );
-  const originalSource = async (source) => {
+  const originalSource = async (source, directory = corpusDirectory, revision = corpusManifest.revision) => {
     const bytes = await readFile(
-      join(corpusDirectory, "upstream", source.path),
+      join(directory, "upstream", source.path),
     );
     if (createHash("sha256").update(bytes).digest("hex") !== source.sha256)
       throw new Error(`Changed external corpus bytes: ${source.path}`);
     return {
       kind: "bytes",
       bytes: Array.from(bytes),
-      systemId: `https://raw.githubusercontent.com/w3c/xsdtests/${corpusManifest.revision}/${source.path}`,
+      systemId: `https://raw.githubusercontent.com/w3c/xsdtests/${revision}/${source.path}`,
     };
   };
   const corpus = await Promise.all(
@@ -83,6 +83,22 @@ try {
       ),
     })),
   );
+  const structuresDirectory = join(root, "test/fixtures/w3c-structures");
+  const structuresManifest = JSON.parse(await readFile(join(structuresDirectory, "manifest.json"), "utf8"));
+  const structuralSource = source => originalSource(source, structuresDirectory, structuresManifest.revision);
+  const structures = await Promise.all(structuresManifest.groups.map(async group => {
+    const schema = group.tests.find(item => item.kind === "schemaTest");
+    return {
+      group: group.group,
+      roots: await Promise.all(schema.sources.map(structuralSource)),
+      resources: await Promise.all(group.resources.map(structuralSource)),
+      schemaValid: schema.expected[0].validity === "valid",
+      instances: await Promise.all(group.tests.filter(item => item.kind === "instanceTest").map(async item => ({
+        name: item.name, source: await structuralSource(item.sources[0]), valid: item.expected[0].validity === "valid",
+      }))),
+    };
+  }));
+  const originals = JSON.parse(await readFile(join(root, "test/fixtures/xsd-original.json"), "utf8")).fixtures;
   const bundle = join(temporary, "validation.mjs");
   await build({
     stdin: {
@@ -180,7 +196,7 @@ try {
       const page = await context.newPage();
       await page.goto(origin);
       const result = await page.evaluate(
-        async ({ corpus }) => {
+        async ({ corpus, structures, originals }) => {
           const {
             compileIsolatedXercesSchema,
             compileSchema,
@@ -625,9 +641,45 @@ try {
               external.dispose();
             }
           }
+          const restoreStructural = source => ({ ...source, bytes: new Uint8Array(source.bytes) });
+          for (const group of structures) {
+            const resourceMap = Object.fromEntries(group.resources.map(source => [source.systemId, restoreStructural(source)]));
+            if (!group.schemaValid) {
+              let code;
+              try { (await compileIsolatedXercesSchema(group.roots.map(restoreStructural), { ...options, resourceMap })).dispose(); }
+              catch (error) { code = error.code; }
+              assert(code === "INVALID_SCHEMA", `external structural ${group.group}: unchanged invalid schema expectation, got ${code}`);
+              continue;
+            }
+            const grammar = await compileIsolatedXercesSchema(group.roots.map(restoreStructural), { ...options, resourceMap });
+            try {
+              assert(!grammar.disposed, `external structural ${group.group}: valid schema`);
+              for (const item of group.instances) {
+                const outcome = await grammar.validate(restoreStructural(item.source));
+                assert(outcome.valid === item.valid, `external structural ${group.group}/${item.name}: expected ${item.valid}; ${outcome.diagnostics.map(d => d.message).join("; ")}`);
+              }
+            } finally { grammar.dispose(); }
+          }
+          for (const fixture of originals) {
+            if (!fixture.schemaValid) {
+              let code;
+              try { (await compileSchema(fixture.schema)).dispose(); }
+              catch (error) { code = error.code; }
+              assert(code === "INVALID_SCHEMA", `original ${fixture.id}: invalid schema, got ${code}`);
+              continue;
+            }
+            const grammar = await compileSchema(fixture.schema);
+            try {
+              assert(!grammar.disposed, `original ${fixture.id}: valid schema`);
+              for (const item of fixture.instances) {
+                const outcome = await grammar.validate(item.xml);
+                assert(outcome.valid === item.valid, `original ${fixture.id}/${item.id}: expected ${item.valid}`);
+              }
+            } finally { grammar.dispose(); }
+          }
           return { assertions };
         },
-        { corpus },
+        { corpus, structures, originals },
       );
       const unavailable = await context.newPage();
       await unavailable.goto(origin + "/no-isolation");
