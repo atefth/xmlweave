@@ -64,3 +64,8 @@ above remain as an audit trail. Universal XSD conformance, arbitrary custom Java
 providers, prolonged-load fuzzing and upstream engine internals were not audited.
 
 Direct-provider admission is tracked in [the batch-admission issue](https://github.com/atefth/xmlweave/issues/77).
+
+CI follow-up: native source/runtime line endings are pinned in `.gitattributes`.
+A real rebuild from canonical LF source produced identical runtime assets and
+updated the source hash; the build provenance gate passes. Rechecked this
+packaging-only correction; no new behavioral finding.

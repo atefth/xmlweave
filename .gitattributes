@@ -1,0 +1,4 @@
+native/xerces-validation.cpp text eol=lf
+native/runtime/xerces-engine.js text eol=lf
+native/runtime/provenance.json text eol=lf
+native/runtime/xerces-engine.wasm binary

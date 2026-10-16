@@ -67,3 +67,8 @@ after the fixes; no confirmed must-fix finding remains.
 **Final verdict: Ship**, subject to required PR CI and merge. The snapshot findings
 above remain as an audit trail. Universal XSD conformance, arbitrary custom Java
 providers, prolonged-load fuzzing and upstream engine internals were not audited.
+
+CI follow-up: native source/runtime line endings are pinned in `.gitattributes`.
+A real rebuild from canonical LF source produced identical runtime assets and
+updated the source hash; the build provenance gate passes. Rechecked this
+packaging-only correction; no new behavioral finding.
