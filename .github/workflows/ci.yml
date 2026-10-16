@@ -19,8 +19,13 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
       - run: npm ci
       - run: npm run build
+      - run: npm run test:java-reference
       - run: npm test
       - run: npm run test:consumers
         env:
@@ -37,3 +42,4 @@ jobs:
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browser
       - run: npm run test:schema-browser
+      - run: npm run test:validation-browser

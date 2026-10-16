@@ -11,3 +11,15 @@ Optional streaming entry: saxes 6.0.0 (ISC) and xmlchars 2.2.0 (MIT). The separa
 External optional peers, not embedded in XMLWeave's distributed artifact: libxml2-wasm 0.7.2 (MIT wrapper plus bundled libxml2 notices in `LICENSE.libxml2`) and xslt-processor 5.1.2 (LGPL-3.0). Applications install these peers explicitly and retain their upstream licenses. See `docs/schema.md` and `docs/transformations.md` for exact packaging boundaries and source links. Browser test bundles are temporary verification fixtures, not distributed XMLWeave runtimes.
 
 XMLWeave's own source is licensed under MIT in `LICENSE`; dependency notices retain their original terms and copyright holders.
+
+
+## Native Xerces validation companion
+
+The shipped `xerces-engine.js` and `xerces-engine.wasm` contain Apache Xerces-C++
+from the pinned source revision recorded in `native/README.md`. Apache Xerces is
+licensed under Apache License 2.0. Its full license and attribution notice are
+retained in `licenses/xerces-c.LICENSE` and `licenses/xerces-c.NOTICE`. The upstream
+WebAssembly evaluation project is attributed in
+`licenses/xerces-wasm-validator.LICENSE` (MIT). XMLWeave's native bridge source and
+rebuild instructions ship with the package. Java remains an explicit optional
+provider and is not required by the native WebAssembly engine.
