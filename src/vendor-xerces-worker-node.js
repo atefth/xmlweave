@@ -6,12 +6,8 @@ export function createXercesWorker(workerURL) {
       : new URL("./schema-xerces-worker.js", import.meta.url),
     {
       type: "module",
-      execArgv: process.execArgv.filter(
-        (value, index, args) =>
-          !value.startsWith("--input-type=") &&
-          value !== "--input-type" &&
-          !(index > 0 && args[index - 1] === "--input-type"),
-      ),
+      // The bundled worker needs no parent CLI flags; some are invalid in workers.
+      execArgv: [],
     },
   );
   return {

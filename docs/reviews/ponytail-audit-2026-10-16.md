@@ -69,3 +69,8 @@ CI follow-up: native source/runtime line endings are pinned in `.gitattributes`.
 A real rebuild from canonical LF source produced identical runtime assets and
 updated the source hash; the build provenance gate passes. Rechecked this
 packaging-only correction; no new behavioral finding.
+
+CI worker correction: the self-contained native worker now starts with no parent
+CLI flags. A real child-process regression covers incompatible Node runtime flags;
+35 affected isolation/hint tests pass. Independent affected-path Ponytail review
+and the host transport audit found no remaining issue.
