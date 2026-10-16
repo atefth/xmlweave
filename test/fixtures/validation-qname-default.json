@@ -1,0 +1,16 @@
+{
+  "name": "QName default prefix declared only in schema",
+  "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:p=\"urn:default\"><xs:simpleType name=\"Q\"><xs:restriction base=\"xs:QName\"/></xs:simpleType><xs:element name=\"root\" type=\"Q\" default=\"p:Thing\"/></xs:schema>",
+  "xml": "<root/>",
+  "lexicalOutput": "<root>p:Thing</root>",
+  "observed": {
+    "java17": { "valid": false, "emittedText": "p:Thing", "emittedPrefixMapping": false },
+    "xerces4Unadapted": { "valid": true, "emittedText": "p:Thing", "emittedPrefixMapping": false },
+    "xmlweaveXercesAdapted": { "valid": false, "emittedText": "p:Thing", "emittedPrefixMapping": false }
+  },
+  "sources": [
+    "https://www.w3.org/TR/xmlschema-1/#cvc-elt",
+    "https://www.w3.org/TR/xmlschema-2/#QName"
+  ],
+  "note": "Observed differential, not an assertion that either implementation is a universal conformance oracle. XSD1.0 element validity clause 5.1.2 and QName namespace-context rules require investigation; collected typed output must not silently lose namespace meaning."
+}

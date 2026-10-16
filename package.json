@@ -58,6 +58,86 @@
         "types": "./dist/transform.d.cts",
         "default": "./dist/transform.cjs"
       }
+    },
+    "./schema-isolated": {
+      "import": {
+        "types": "./dist/schema-isolated.d.ts",
+        "default": "./dist/schema-isolated.js"
+      },
+      "require": {
+        "types": "./dist/schema-isolated.d.cts",
+        "default": "./dist/schema-isolated.cjs"
+      }
+    },
+    "./schema-java": {
+      "import": {
+        "types": "./dist/schema-java.d.ts",
+        "default": "./dist/schema-java.js"
+      },
+      "require": {
+        "types": "./dist/schema-java.d.cts",
+        "default": "./dist/schema-java.cjs"
+      }
+    },
+    "./schema-xerces": {
+      "import": {
+        "types": "./dist/schema-xerces.d.ts",
+        "default": "./dist/schema-xerces.js"
+      },
+      "require": {
+        "types": "./dist/schema-xerces.d.cts",
+        "default": "./dist/schema-xerces.cjs"
+      }
+    },
+    "./schema-xerces-isolated": {
+      "import": {
+        "types": "./dist/schema-xerces-isolated.d.ts",
+        "default": "./dist/schema-xerces-isolated.js"
+      },
+      "require": {
+        "types": "./dist/schema-xerces-isolated.d.cts",
+        "default": "./dist/schema-xerces-isolated.cjs"
+      }
+    },
+    "./schema-pipeline": {
+      "import": {
+        "types": "./dist/schema-pipeline.d.ts",
+        "default": "./dist/schema-pipeline.js"
+      },
+      "require": {
+        "types": "./dist/schema-pipeline.d.cts",
+        "default": "./dist/schema-pipeline.cjs"
+      }
+    },
+    "./schema-factory": {
+      "import": {
+        "types": "./dist/schema-factory.d.ts",
+        "default": "./dist/schema-factory.js"
+      },
+      "require": {
+        "types": "./dist/schema-factory.d.cts",
+        "default": "./dist/schema-factory.cjs"
+      }
+    },
+    "./schema-providers": {
+      "import": {
+        "types": "./dist/schema-providers.d.ts",
+        "default": "./dist/schema-providers.js"
+      },
+      "require": {
+        "types": "./dist/schema-providers.d.cts",
+        "default": "./dist/schema-providers.cjs"
+      }
+    },
+    "./schema-hints": {
+      "import": {
+        "types": "./dist/schema-hints.d.ts",
+        "default": "./dist/schema-hints.js"
+      },
+      "require": {
+        "types": "./dist/schema-hints.d.cts",
+        "default": "./dist/schema-hints.cjs"
+      }
     }
   },
   "files": [
@@ -65,15 +145,22 @@
     "README.md",
     "THIRD_PARTY_NOTICES.md",
     "docs",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "licenses",
+    "scripts/build-xerces.py",
+    "native/xerces-validation.cpp",
+    "native/README.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.mjs",
     "test:consumers": "node scripts/consumers.mjs",
     "test:browser": "node scripts/browser.mjs",
-    "check": "npm run build && npm test && npm run test:consumers && npm run test:browser && npm run test:schema-browser",
-    "test:schema-browser": "node scripts/schema-browser.mjs"
+    "check": "npm run build && npm test && npm run test:consumers && npm run test:browser && npm run test:schema-browser && npm run test:validation-browser && npm run test:java-reference",
+    "test:schema-browser": "node scripts/schema-browser.mjs",
+    "test:validation-browser": "node scripts/validation-browser.mjs",
+    "test:java-reference": "node scripts/compare-java.mjs",
+    "build:native": "python scripts/build-xerces.py"
   },
   "engines": {
     "node": ">=22"

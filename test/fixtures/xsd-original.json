@@ -1,0 +1,748 @@
+{
+  "version": 1,
+  "license": "MIT",
+  "origin": "Original XMLWeave regression fixtures; not an authoritative W3C suite",
+  "fixtures": [
+    {
+      "id": "sequence-order",
+      "feature": "sequence/order",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"a\" type=\"xs:string\"/><xs:element name=\"b\" type=\"xs:int\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><a>x</a><b>1</b></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><b>1</b><a>x</a></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "occurrence-limits",
+      "feature": "occurrence limits",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"a\" type=\"xs:string\" minOccurs=\"0\" maxOccurs=\"2\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><a>x</a><a>y</a></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><a>x</a><a>y</a><a>z</a></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "choice",
+      "feature": "choice",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:choice><xs:element name=\"a\"/><xs:element name=\"b\"/></xs:choice></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><b/></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><a/><b/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "feature": "all",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:all><xs:element name=\"a\"/><xs:element name=\"b\"/></xs:all></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><b/><a/></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><a/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "required-attributes",
+      "feature": "required attributes",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:attribute name=\"id\" type=\"xs:int\" use=\"required\"/></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r id=\"3\"/>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r/>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "enumeration",
+      "feature": "enumeration",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:restriction base=\"xs:string\"><xs:enumeration value=\"red\"/><xs:enumeration value=\"blue\"/></xs:restriction></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>red</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>green</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "pattern-length",
+      "feature": "pattern/length",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:restriction base=\"xs:string\"><xs:pattern value=\"[A-Z]{2}\"/><xs:length value=\"2\"/></xs:restriction></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>AB</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>123</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "numeric-facets",
+      "feature": "numeric facets",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:restriction base=\"xs:decimal\"><xs:minInclusive value=\"0\"/><xs:maxExclusive value=\"10\"/><xs:totalDigits value=\"3\"/><xs:fractionDigits value=\"1\"/></xs:restriction></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>9.5</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>10.5</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "list",
+      "feature": "list",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:list itemType=\"xs:int\"/></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>1 2 3</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>1 bad</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "union",
+      "feature": "union",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:union memberTypes=\"xs:int xs:boolean\"/></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>true</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>hello</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "complex-extension",
+      "feature": "complex extension",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:complexType name=\"base\"><xs:sequence><xs:element name=\"a\"/></xs:sequence></xs:complexType><xs:element name=\"r\"><xs:complexType><xs:complexContent><xs:extension base=\"base\"><xs:sequence><xs:element name=\"b\"/></xs:sequence></xs:extension></xs:complexContent></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><a/><b/></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><a/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "simple-content",
+      "feature": "simple content",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:simpleContent><xs:extension base=\"xs:int\"><xs:attribute name=\"unit\" use=\"required\"/></xs:extension></xs:simpleContent></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r unit=\"kg\">3</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r unit=\"kg\">oops</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "key-keyref",
+      "feature": "key/keyref",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element name=\"item\" maxOccurs=\"unbounded\"><xs:complexType><xs:attribute name=\"id\" type=\"xs:string\" use=\"required\"/></xs:complexType></xs:element><xs:element name=\"ref\"><xs:complexType><xs:attribute name=\"id\" type=\"xs:string\" use=\"required\"/></xs:complexType></xs:element></xs:sequence></xs:complexType><xs:key name=\"ids\"><xs:selector xpath=\"item\"/><xs:field xpath=\"@id\"/></xs:key><xs:keyref name=\"refs\" refer=\"ids\"><xs:selector xpath=\"ref\"/><xs:field xpath=\"@id\"/></xs:keyref></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><item id=\"a\"/><ref id=\"a\"/></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><item id=\"a\"/><ref id=\"b\"/></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "nillable",
+      "feature": "nillable",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:int\" nillable=\"true\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>bad</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "fixed-attribute",
+      "feature": "fixed attribute",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:complexType><xs:attribute name=\"v\" type=\"xs:string\" fixed=\"yes\"/></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r v=\"yes\"/>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r v=\"no\"/>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "substitution-group",
+      "feature": "substitution group",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"head\" type=\"xs:string\" abstract=\"true\"/><xs:element name=\"child\" type=\"xs:string\" substitutionGroup=\"head\"/><xs:element name=\"r\"><xs:complexType><xs:sequence><xs:element ref=\"head\"/></xs:sequence></xs:complexType></xs:element></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r><child>x</child></r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r><head>x</head></r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-integer",
+      "feature": "datatype integer",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:integer\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>123456789012345678901234567890</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>1.5</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-int",
+      "feature": "datatype int",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:int\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>2147483647</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>2147483648</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-unsignedByte",
+      "feature": "datatype unsignedByte",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:unsignedByte\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>255</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>256</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-nonNegativeInteger",
+      "feature": "datatype nonNegativeInteger",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:nonNegativeInteger\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>0</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>-1</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-positiveInteger",
+      "feature": "datatype positiveInteger",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:positiveInteger\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>1</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>0</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-decimal",
+      "feature": "datatype decimal",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:decimal\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>+001.20</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>1e2</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-float",
+      "feature": "datatype float",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:float\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>INF</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>float</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-double",
+      "feature": "datatype double",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:double\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>NaN</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>double</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-boolean",
+      "feature": "datatype boolean",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:boolean\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>true</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>TRUE</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-date",
+      "feature": "datatype date",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:date\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>2000-02-29Z</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>2023-02-29</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-dateTime",
+      "feature": "datatype dateTime",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:dateTime\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>2000-01-01T12:30:00Z</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>2000-01-01</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-time",
+      "feature": "datatype time",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:time\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>12:30:00Z</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>25:00:00</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-duration",
+      "feature": "datatype duration",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:duration\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>P1DT2H</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>1D</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-gYearMonth",
+      "feature": "datatype gYearMonth",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:gYearMonth\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>2024-12</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>2024-13</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-gYear",
+      "feature": "datatype gYear",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:gYear\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>2024</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>year</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-gMonthDay",
+      "feature": "datatype gMonthDay",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:gMonthDay\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>--02-29</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>--02-30</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-gDay",
+      "feature": "datatype gDay",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:gDay\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>---31</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>---32</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-gMonth",
+      "feature": "datatype gMonth",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:gMonth\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>--12</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>--13</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-base64Binary",
+      "feature": "datatype base64Binary",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:base64Binary\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>AQID</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>%%%</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-hexBinary",
+      "feature": "datatype hexBinary",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:hexBinary\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>0A</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>0G</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-language",
+      "feature": "datatype language",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:language\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>en-GB</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>123</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-Name",
+      "feature": "datatype Name",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:Name\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>alpha:name</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>-bad</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-NCName",
+      "feature": "datatype NCName",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:NCName\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>alpha-name</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>a:b</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "datatype-NMTOKEN",
+      "feature": "datatype NMTOKEN",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:NMTOKEN\"/></xs:schema>",
+      "schemaValid": true,
+      "instances": [
+        {
+          "id": "valid",
+          "xml": "<r>a:b-1</r>",
+          "valid": true
+        },
+        {
+          "id": "invalid",
+          "xml": "<r>bad value</r>",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "id": "schema-unknown-type",
+      "feature": "schema unknown-type",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\" type=\"xs:unknownType\"/></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-duplicate-component",
+      "feature": "schema duplicate-component",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"/><xs:element name=\"r\"/></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    },
+    {
+      "id": "schema-invalid-facet",
+      "feature": "schema invalid-facet",
+      "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><xs:element name=\"r\"><xs:simpleType><xs:restriction base=\"xs:int\"><xs:minInclusive value=\"not-number\"/></xs:restriction></xs:simpleType></xs:element></xs:schema>",
+      "schemaValid": false,
+      "instances": []
+    }
+  ]
+}

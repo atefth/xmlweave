@@ -1,0 +1,10 @@
+{
+  "xercesRevision": "32ff60fb42931f73ce0720cd8868b50c883223e7",
+  "emsdkRevision": "0dfff153dc3c596948ac088b8853006c570f2609",
+  "emscriptenVersion": "5.0.6",
+  "sha256": {
+    "native/xerces-validation.cpp": "1785f4e238c7dfa1a98ee63a7d2e644beaf27b9e95153631fd0b15678918433e",
+    "native/runtime/xerces-engine.js": "364b1d6babeb93943ee4f24c40255f1d527e1a7f61ba2b0c24a3346311daad59",
+    "native/runtime/xerces-engine.wasm": "632185e9d5eefa4a663bb2d36f052e12b9e97c94b529338b5c6fdb8212aa53ae"
+  }
+}

@@ -1,0 +1,1520 @@
+{
+  "formatVersion": 1,
+  "upstream": "https://github.com/w3c/xsdtests",
+  "revision": "7bc3365c652a322f3d762021b3879eb92dae7e30",
+  "scope": "Explicit XSD 1.0 NIST datatype selection; not complete W3C conformance.",
+  "selectionPolicy": "Eight named datatype families, complete first group in metadata order and complete first group with metadata-declared invalid instances where available; selected before executing engines.",
+  "copyright": {
+    "path": "00COPYRIGHT",
+    "bytes": 308,
+    "sha256": "7eed412023877d15a3900b6802afb9e6365c0ea0a71a1456c5bf5f3a591e7fb2",
+    "gitBlob": "f3bca2b0bdf114b334a68d9ae6ac30695e9d77a2",
+    "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/00COPYRIGHT"
+  },
+  "metadata": {
+    "path": "nistMeta/NISTXMLSchemaDatatypes.testSet",
+    "bytes": 9357306,
+    "sha256": "826f1af75841d345fd3728863d47c3d53fd8a3a26c8e40930e410cb29f505778",
+    "gitBlob": "300144099b8b25f09019cd5952d38c6005c3f4bf",
+    "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistMeta/NISTXMLSchemaDatatypes.testSet",
+    "storedAs": "NISTXMLSchemaDatatypes.testSet.gz",
+    "compressedSha256": "cb5f47d5df2ecfe92044a46daf2e3bce708dbddbed33fba0fe05a53f5dab4118"
+  },
+  "groups": [
+    {
+      "group": "atomic-base64Binary-maxLength",
+      "datatype": "base64Binary",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-base64Binary-maxLength-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTSchema-SV-IV-atomic-base64Binary-maxLength-1.xsd",
+            "bytes": 1156,
+            "sha256": "62d38e0645a631ca0745bd3f0aa2f55bafeed0a3b5d08702c37f2bdde1590d7b",
+            "gitBlob": "b8697fa9928d86e87a15a668b5c0d6112d79e7d4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTSchema-SV-IV-atomic-base64Binary-maxLength-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-base64Binary-maxLength-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-1.xml",
+            "bytes": 833,
+            "sha256": "ac077374a4ebd1877774beff3920f7f30ada08d95ea955df778e8261c61356d4",
+            "gitBlob": "b28e32373ea42277759730e1b713f26817e3ce98",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-base64Binary-maxLength-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-2.xml",
+            "bytes": 833,
+            "sha256": "2c9ca35c7817d6f57532b8f49fc6ca1a2bd2ed4f69e0ee2980b6884b99dc334d",
+            "gitBlob": "020bc349a75e04313022cb622e66801368ffd967",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-base64Binary-maxLength-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-3.xml",
+            "bytes": 833,
+            "sha256": "036a3cac0f6ca467f4912f1a8bea6acfd08390d1ddce652387ca35ab11f3925a",
+            "gitBlob": "03f732d3a51e6c7acf5de678e6e2b75248300d6f",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-base64Binary-maxLength-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-4.xml",
+            "bytes": 833,
+            "sha256": "6bbba157cdeccaf426d0f3ba96fbea05736e82aecd89d14a121d490bd650dc19",
+            "gitBlob": "c93822f35c604c85323c8c0c0065ab110c494494",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-base64Binary-maxLength-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-5.xml",
+            "bytes": 833,
+            "sha256": "3d48d24c7f7c338b5c322717598ecc039fcb4a86fd3ade7315ae3ef58db142bf",
+            "gitBlob": "b96f6a4daec50aec674c83b190783dd1bde14dc0",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/base64Binary/Schema+Instance/NISTXML-SV-IV-atomic-base64Binary-maxLength-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-date-minExclusive",
+      "datatype": "date",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-date-minExclusive-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTSchema-SV-IV-atomic-date-minExclusive-1.xsd",
+            "bytes": 1129,
+            "sha256": "dd9e8f34d2155b3aac7a105a227ffbc6bf77853e59e92511dab0f061ffc65093",
+            "gitBlob": "9c048189ee471c58ece3b593a5fc692464bb8513",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTSchema-SV-IV-atomic-date-minExclusive-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-date-minExclusive-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-1.xml",
+            "bytes": 804,
+            "sha256": "2e7646b00b105a06ba28baed29f8ca9058736a8734c52ba70526ef7b802cc357",
+            "gitBlob": "c8e7e4757c787383df3b1ea2bbfb82b83254ae14",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-date-minExclusive-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-2.xml",
+            "bytes": 804,
+            "sha256": "283f04ac59d2ea53ea2833391984396a7d85fcb337505494b8fcfd5ed27fe29b",
+            "gitBlob": "2d9840ab48a2333f3ebc1985168af8a4d300e61b",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-date-minExclusive-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-3.xml",
+            "bytes": 804,
+            "sha256": "aa4d9bb4c50691736196e4bf6243dfc98f2838006ae41408a62e264ca47094e2",
+            "gitBlob": "ae2e8222d0232bd4047082d68c9bacac6b9957ac",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-date-minExclusive-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-4.xml",
+            "bytes": 804,
+            "sha256": "7343532fb764e2b38104f5b515ac6e9647f80fbc760035c8cf24e93d8cd365e2",
+            "gitBlob": "7eb9225be935cbbd80fe587ca65426c067761d64",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-date-minExclusive-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-5.xml",
+            "bytes": 804,
+            "sha256": "948fb5fd787a15c5c7c43af0cc98ada681c8ad9f4553c8296d69d007cbc8700b",
+            "gitBlob": "6123c2cde279252c07504bcdd1c449fa281426b7",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-IV-atomic-date-minExclusive-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-date-minInclusive-5",
+      "datatype": "date",
+      "selectionReason": "First upstream group in metadata order declaring invalid instances for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-II-atomic-date-minInclusive-2",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTSchema-SV-II-atomic-date-minInclusive-2.xsd",
+            "bytes": 1129,
+            "sha256": "cbc55fc6727ae94938f8be947bb3a93eb19a2bab15eb34638b49456fd88bd0a7",
+            "gitBlob": "8330af061fc3a5e1d666617e28ee6cfaee2a8355",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTSchema-SV-II-atomic-date-minInclusive-2.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-date-minInclusive-2-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-1.xml",
+            "bytes": 806,
+            "sha256": "9a7acd1fce17ae3d639703ea422aaa1dae1ec396e0fd6d8acd37280be3c956e8",
+            "gitBlob": "51ccb57dfa72e6b46e0c8f060947308d31a62542",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-date-minInclusive-2-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-2.xml",
+            "bytes": 806,
+            "sha256": "0a6a2983452b37c6a85926a4803eee5e32f7d06e4e682708e1e3ab8e17ad69f0",
+            "gitBlob": "4710e0d7832f942b66f89fca510fe0576783ec54",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-date-minInclusive-2-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-3.xml",
+            "bytes": 806,
+            "sha256": "25234cbb5298caf57af1d12055402e70868d3139c02bef2ebd77e9028ccb7414",
+            "gitBlob": "4d6ddfaa8fbefde65bd51f0cbf5b3b6b9e2e4d88",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-date-minInclusive-2-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-4.xml",
+            "bytes": 806,
+            "sha256": "728b0f20e85d0a8f4b3fc707d6531803ff00bb94f29af5eb6433266e40cea692",
+            "gitBlob": "a9980ac197e622b8b38ad1824d04c10e92a73cbd",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-date-minInclusive-2-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-5.xml",
+            "bytes": 806,
+            "sha256": "7d6eb2c9c2c10eebb94ac1705cc479633e2edbd7cfe1dc374aa32b3b6f47ffb7",
+            "gitBlob": "cd76fab3429225ca1b76e440d90f9cba0d1c5a04",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/date/Schema+Instance/NISTXML-SV-II-atomic-date-minInclusive-2-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-integer-minExclusive",
+      "datatype": "integer",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-integer-minExclusive-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTSchema-SV-IV-atomic-integer-minExclusive-1.xsd",
+            "bytes": 1174,
+            "sha256": "cfe45f58e2fc08be953607365219e76a3744d6037ab261c7df3220d1f7cfe784",
+            "gitBlob": "53ad91b399cb7d8e8781f0271b7bafd17c6a5ce8",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTSchema-SV-IV-atomic-integer-minExclusive-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-integer-minExclusive-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-1.xml",
+            "bytes": 834,
+            "sha256": "b75d17912da61c7408516182b0f4bc6116a70f6cf9860bc3d93f0cb3e9254053",
+            "gitBlob": "9afb3615bb3a0ca4254897c71b7754d2b7c95085",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-integer-minExclusive-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-2.xml",
+            "bytes": 833,
+            "sha256": "138d7b1c9640fa334b5ac34ea8ffe4abf5dd476251b5eb79dd3452a70371940a",
+            "gitBlob": "974ce10730c1bfd3f230dfd4b0fc90515dd6e3cc",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-integer-minExclusive-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-3.xml",
+            "bytes": 833,
+            "sha256": "4b2e5bac841a964c0ae505ceb7564f5b9965f2eec8af6a326245f3eadb38a7d3",
+            "gitBlob": "752004ba86e14d55def6166d43b32fb83fccdaa4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-integer-minExclusive-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-4.xml",
+            "bytes": 834,
+            "sha256": "d48f89ca0c992e170735b843e895b21dd4e9ec4b72a0a131ff8cdac4d8267861",
+            "gitBlob": "7c0a897e233c0c306743adbec60b8375c1ef40ce",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-integer-minExclusive-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-5.xml",
+            "bytes": 833,
+            "sha256": "f22c777e3e7fc86f87995744a76f5001ba7d72c136ab004a088619a822d324ea",
+            "gitBlob": "1d8874a6e626c2d142557f59f969ee14d5891548",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-IV-atomic-integer-minExclusive-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-integer-minInclusive-5",
+      "datatype": "integer",
+      "selectionReason": "First upstream group in metadata order declaring invalid instances for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-II-atomic-integer-minInclusive-2",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTSchema-SV-II-atomic-integer-minInclusive-2.xsd",
+            "bytes": 1172,
+            "sha256": "e9602e7aa015570ad06e0559c3a37a2467a6f8d6733eaff089f0011b8d059327",
+            "gitBlob": "344340af2f1902574d8a5a3a5e92c5025376b8a4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTSchema-SV-II-atomic-integer-minInclusive-2.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-integer-minInclusive-2-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-1.xml",
+            "bytes": 836,
+            "sha256": "4a7e9d8dd608d49b284cc571885408f3408f907e4b5334468629e98740385aec",
+            "gitBlob": "e8b62f1c741f2bd9ab02f9bebc9bea3fbaa49b44",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-integer-minInclusive-2-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-2.xml",
+            "bytes": 836,
+            "sha256": "d4c6c99e75023d5d9b913c9d57e925837cd0554dddc0c55a0106b02cd947b121",
+            "gitBlob": "dd12f65341bd3cf98cb2eaf30a13dad3cd12614c",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-integer-minInclusive-2-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-3.xml",
+            "bytes": 836,
+            "sha256": "9f4e19f334e4b772bcceafe18fdedf9e113e14f98201748a25d758234b48c35b",
+            "gitBlob": "d7e6e69ec398dc6bf29020f836b7b7bcabe4ac29",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-integer-minInclusive-2-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-4.xml",
+            "bytes": 835,
+            "sha256": "e91b6175ff00bbbd77d6df44ae815eb9b91d1a5a2743e801f9c770a449fda1f7",
+            "gitBlob": "41db2966c7309a50850b360f6c6da373688d04a2",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-integer-minInclusive-2-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-5.xml",
+            "bytes": 835,
+            "sha256": "3d3aa5fe2cce17a96e309b2f9ae3e272ccb3372cb5c01cb514cf037a4dd8d99f",
+            "gitBlob": "4a8506bad7643bf5fac8967bbba416f7be86e5bf",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/integer/Schema+Instance/NISTXML-SV-II-atomic-integer-minInclusive-2-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-decimal-minExclusive",
+      "datatype": "decimal",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-decimal-minExclusive-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTSchema-SV-IV-atomic-decimal-minExclusive-1.xsd",
+            "bytes": 1174,
+            "sha256": "df39a58d51fe1c3c47f649e03816a682139b10b17fe84d8b2832e75a200e6a50",
+            "gitBlob": "c0fa7228b766348f16824fcdbc377f95cd462b29",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTSchema-SV-IV-atomic-decimal-minExclusive-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-decimal-minExclusive-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-1.xml",
+            "bytes": 834,
+            "sha256": "b0646fa673d78499c011c58d6d79e217d4d494764216c0b7ba109480fe24407a",
+            "gitBlob": "24f1873b0735735a44981a8642beff6bdd1266b6",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-decimal-minExclusive-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-2.xml",
+            "bytes": 833,
+            "sha256": "4545acfc62537c601088854b9192f8d8c557c8b912dec72fc55ce1d59e3adc22",
+            "gitBlob": "271a93e1da41736bfad808c5e355d0b7dcebee98",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-decimal-minExclusive-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-3.xml",
+            "bytes": 834,
+            "sha256": "9b92e3de48729c600c735040ff16d1ecb755250498a4f9e919c89d779aeb8fb6",
+            "gitBlob": "e162d60747243bf4503175074741f22e2ef741fe",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-decimal-minExclusive-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-4.xml",
+            "bytes": 834,
+            "sha256": "cacafd3b9ccb57b4a11f4e27eb8359d8260cb34a90b71cd0a48a6db7e5b2596b",
+            "gitBlob": "25a4293e363bf83c767ef83ebca97b5e11635adb",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-decimal-minExclusive-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-5.xml",
+            "bytes": 833,
+            "sha256": "a0d404b9a03f2393f63e0d19b139eea8e253012c6166604a3bd890d29ee67ecd",
+            "gitBlob": "883339c6cab213327dcd52714ddd3aa06354a0dd",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-IV-atomic-decimal-minExclusive-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-decimal-minInclusive-5",
+      "datatype": "decimal",
+      "selectionReason": "First upstream group in metadata order declaring invalid instances for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-II-atomic-decimal-minInclusive-2",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTSchema-SV-II-atomic-decimal-minInclusive-2.xsd",
+            "bytes": 1170,
+            "sha256": "b0e5c63f0aa2cc74549ad639ab151dfc9c87d3e0da77489be515113976c1f057",
+            "gitBlob": "101d5f683f81bdf443ecb8599df2462b0d5fdd37",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTSchema-SV-II-atomic-decimal-minInclusive-2.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-decimal-minInclusive-2-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-1.xml",
+            "bytes": 836,
+            "sha256": "bc40ea422d66282ba76cebd33f48abea3e943b715066d9020b2b11271bf4bc9d",
+            "gitBlob": "49cf7a33be30f2265a2132954dfe35d5162fdf15",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-decimal-minInclusive-2-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-2.xml",
+            "bytes": 837,
+            "sha256": "8cc57931aa8ae38efc800916a6c617756fefb83b40429785f08c615578e990c2",
+            "gitBlob": "ff588448fc65ee2f1d68c22b267ad18e116fc315",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-decimal-minInclusive-2-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-3.xml",
+            "bytes": 838,
+            "sha256": "13134ad0a62e9da2f14e3ffa46d75878663ccbe621d5d503c964d3d2c40b876d",
+            "gitBlob": "421769538e148cd2082d99b137ec92ebc4a28cb2",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-decimal-minInclusive-2-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-4.xml",
+            "bytes": 838,
+            "sha256": "7e52af32afa83c67abdf492def0a69de30476c91063da183b3f492a8ff2e0c6c",
+            "gitBlob": "a0f1d96ed0f1814d581fe63c3934ccc9c3ff76d4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-decimal-minInclusive-2-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-5.xml",
+            "bytes": 836,
+            "sha256": "1c753e47bebb242e0e222a3ce5d677c8db063123b273d6f098c3b38714bfcb78",
+            "gitBlob": "2750ae6a4dd9bca64cb32a0db7db2bda6b954b16",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/decimal/Schema+Instance/NISTXML-SV-II-atomic-decimal-minInclusive-2-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-boolean-pattern",
+      "datatype": "boolean",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-boolean-pattern-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTSchema-SV-IV-atomic-boolean-pattern-1.xsd",
+            "bytes": 1103,
+            "sha256": "0232be7b0107f455afe52a1ac3c55bdf36aba95bfc764ac6b8bf4889df3d0281",
+            "gitBlob": "bf519bf73aae0f88b331500b20695ce50cb6b5f8",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTSchema-SV-IV-atomic-boolean-pattern-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-boolean-pattern-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-1.xml",
+            "bytes": 781,
+            "sha256": "c6e9cc035ce76086aec6c6b90744b53cce7ff70e6f0ce0ead6b97646d10c8152",
+            "gitBlob": "e86d32da70932ed62146c275cfc895fc2570147c",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-boolean-pattern-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-2.xml",
+            "bytes": 781,
+            "sha256": "ffce2f6ba5307dba786d738ed700bf13ba3f623cc9a0b1f85c1acd0b73fcd79f",
+            "gitBlob": "ccba6bcbbaeb19fb30fcb99b1ba6e4e52058e8d6",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-boolean-pattern-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-3.xml",
+            "bytes": 781,
+            "sha256": "303ef6aaed4de8aafc0a64c59d5360bcfcbd188b8566c6de8689b7916f157f29",
+            "gitBlob": "b8b8f6341e5e2c7a8cd4be283c45b1e6d3f659d2",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-boolean-pattern-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-4.xml",
+            "bytes": 781,
+            "sha256": "69a35143f1fa207374504c20af949b0b896629b025a4bcd170e8ae6677c8db51",
+            "gitBlob": "8cb2cb9a72bbbf6d63eb30c9f03c51b282070f0a",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-boolean-pattern-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-5.xml",
+            "bytes": 781,
+            "sha256": "343db8bd48b711f8448cc8e9cfa87d65916e3331c006afb67fcddff674299ea7",
+            "gitBlob": "30861843adb07a6f01896d9a657766ef023400d0",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/boolean/Schema+Instance/NISTXML-SV-IV-atomic-boolean-pattern-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-hexBinary-maxLength",
+      "datatype": "hexBinary",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-hexBinary-maxLength-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTSchema-SV-IV-atomic-hexBinary-maxLength-1.xsd",
+            "bytes": 1129,
+            "sha256": "64bb31dbb9175325c21fd9e253cd84a7e36ea688f5685daf8d818b4e467199a9",
+            "gitBlob": "e9a93b98e9069a4e8c7fece776f910eadca165aa",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTSchema-SV-IV-atomic-hexBinary-maxLength-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-hexBinary-maxLength-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-1.xml",
+            "bytes": 810,
+            "sha256": "29476673f1e4d983a7ccdd8eeb0d691472340e9bcaf5e6ff83218ccd3aea7441",
+            "gitBlob": "48e4184763bb624559e2415ef6a08163caf67c3b",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-hexBinary-maxLength-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-2.xml",
+            "bytes": 810,
+            "sha256": "b6521f39b99add466cc45d8859a94579525f68fdcd86f90071e53573426df850",
+            "gitBlob": "f902df332437b4b1bea8c13f4297d227392f9900",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-hexBinary-maxLength-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-3.xml",
+            "bytes": 810,
+            "sha256": "83ccce0d3b0cb4d846159641021688c89f60939b91b89acad9a1d9aaf9671d98",
+            "gitBlob": "207bd6749d80d7121474025e47dbdc530c877243",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-hexBinary-maxLength-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-4.xml",
+            "bytes": 810,
+            "sha256": "5366d78befd570cb9432fee9fe4d57dce20888f9adb2f6a4fb3b6602677e01fb",
+            "gitBlob": "f6c81f2bc6e01f049729e1ffd409c70fce26739c",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-hexBinary-maxLength-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-5.xml",
+            "bytes": 810,
+            "sha256": "fb7d4656317b2a4fbefacf1d33df5b3d315eadfb8dc90327cb2af4fa81a07f54",
+            "gitBlob": "abf14470161ab63570d67b25e1135bf069e40cc1",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/hexBinary/Schema+Instance/NISTXML-SV-IV-atomic-hexBinary-maxLength-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-duration-minExclusive",
+      "datatype": "duration",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-duration-minExclusive-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTSchema-SV-IV-atomic-duration-minExclusive-1.xsd",
+            "bytes": 1189,
+            "sha256": "402ef58bfd3fc497b2832f5ee687c8a408d3fa2487bd86ebf19361c482bd4ea0",
+            "gitBlob": "9bba901143c95138b991102e9666d26c7cc506b4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTSchema-SV-IV-atomic-duration-minExclusive-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-duration-minExclusive-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-1.xml",
+            "bytes": 844,
+            "sha256": "1d2435cb02c6efbe40e484b09a88ddc624e95c558a55a176967f59a7e0d78af2",
+            "gitBlob": "b57fea8372c95068d9908e97df877995496dc157",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-duration-minExclusive-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-2.xml",
+            "bytes": 844,
+            "sha256": "2defb0ba19a4e5447eb4490a7fc3d7fed01f8b4b84324f2aca15cb5a687ac452",
+            "gitBlob": "84cfdfa45135d1b3eca717734435bf5a164a0d98",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-duration-minExclusive-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-3.xml",
+            "bytes": 844,
+            "sha256": "759bbef7b34479dd8654814b9b77f84dd2d1a16c338caadf32565a511436fd85",
+            "gitBlob": "5716f8964b7e10fbbbd80d21491b23f09488ddd2",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-duration-minExclusive-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-4.xml",
+            "bytes": 844,
+            "sha256": "87ee6ec53326f1b15089c8f7639bb5940bbc811054353856dba3eb369eb97007",
+            "gitBlob": "40e36d3532f9fe5a50dfb81b31d0943916a95453",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-duration-minExclusive-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-5.xml",
+            "bytes": 844,
+            "sha256": "1564554ff5d01902286bf228cc92a67975188fc1beaa4e04a1f99f2c1b670fa1",
+            "gitBlob": "636d20ed0c6629f2f3e09597903c475f0f366a8b",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-IV-atomic-duration-minExclusive-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-duration-minInclusive-5",
+      "datatype": "duration",
+      "selectionReason": "First upstream group in metadata order declaring invalid instances for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-II-atomic-duration-minInclusive-2",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTSchema-SV-II-atomic-duration-minInclusive-2.xsd",
+            "bytes": 1189,
+            "sha256": "062afe537ec9c1df8d5c2aef5508d100f1164d239e6d345257f25d5c36152a04",
+            "gitBlob": "02eb13661167746688d6ab8b017c98090c4b7227",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTSchema-SV-II-atomic-duration-minInclusive-2.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-duration-minInclusive-2-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-1.xml",
+            "bytes": 846,
+            "sha256": "d2768ecb17fcfd8e8bb2bb8bd2e152924b71f860a3246247703ceee8ca6d8310",
+            "gitBlob": "f7b981be81ccaa7b11def376e24b94f0735235f6",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-duration-minInclusive-2-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-2.xml",
+            "bytes": 846,
+            "sha256": "efe9a9c25c89706b1ce2990a02dda966850208b9587a4c6337992b99b5c2782a",
+            "gitBlob": "a7c9905458bd802c632749757603734d2ba1a8c0",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-duration-minInclusive-2-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-3.xml",
+            "bytes": 846,
+            "sha256": "0eac28de76eed7feaebc7597e1585a333700653ff1a32b97e2ce1a90d82bd93e",
+            "gitBlob": "732912b615e39bcc2cc20ed9e43d15cc7f8e9c82",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-duration-minInclusive-2-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-4.xml",
+            "bytes": 846,
+            "sha256": "55b3722763ec63a8d2a33d7e3a60f432eace0b96c454b01bd2c31878d3367583",
+            "gitBlob": "48fb8c98a8d4349b7ed5faf19ca5e385480135d6",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-duration-minInclusive-2-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-5.xml",
+            "bytes": 846,
+            "sha256": "d561ce81672166761b57e7f95db7c47c2e4499e3733b1639b6ac09f206dfc76b",
+            "gitBlob": "6def0160335942f75b1f05e2a481a35898ec4453",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/duration/Schema+Instance/NISTXML-SV-II-atomic-duration-minInclusive-2-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-string-maxLength",
+      "datatype": "string",
+      "selectionReason": "First upstream group in metadata order for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-IV-atomic-string-maxLength-1",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTSchema-SV-IV-atomic-string-maxLength-1.xsd",
+            "bytes": 1102,
+            "sha256": "d5957180ee36a95f8f829e7a6f5d83f68359c77acf41b1cfbb7d30687bcc5fd4",
+            "gitBlob": "f1cb65bd01c268f9c638c2651b334b55424ab4ac",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTSchema-SV-IV-atomic-string-maxLength-1.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-string-maxLength-1-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-1.xml",
+            "bytes": 787,
+            "sha256": "91482743d067139cfdb7d05705d79804c688f13e64ee4f85f89d35251e41fb7b",
+            "gitBlob": "f2dc760030e5364e66525e32847bc349eb12b932",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-string-maxLength-1-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-2.xml",
+            "bytes": 787,
+            "sha256": "065dbefb30b4b1a0e8930241be15ef610ccc762d866d9165a60bc67c3366a3e8",
+            "gitBlob": "07ccbb615ad0bb02125a02c7a2a299f4ecf4423c",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-string-maxLength-1-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-3.xml",
+            "bytes": 787,
+            "sha256": "faf60ef862af697ea95bb134bbfd0ad05a7e5315c202be2194a2ac1ed24824ba",
+            "gitBlob": "acfe436e225d6210e1a71c3bd80ddfd81b1a0eee",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-string-maxLength-1-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-4.xml",
+            "bytes": 787,
+            "sha256": "8b3ee2bcbc95627aab00c1b37864bcb044c4b32c2a3d6cf1737415ea85f2bd10",
+            "gitBlob": "45bc0f98e7b353419824cd322116278126bae795",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-IV-atomic-string-maxLength-1-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-5.xml",
+            "bytes": 787,
+            "sha256": "984b1c83e95f4aeb616b01351ca8dc50c9603425234e196532e0ecc8a8cf270b",
+            "gitBlob": "9e8b4c49a05b580e5793f52b69ff38d22375c317",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-IV-atomic-string-maxLength-1-5.xml"
+          }
+        }
+      ]
+    },
+    {
+      "group": "atomic-string-minLength-5",
+      "datatype": "string",
+      "selectionReason": "First upstream group in metadata order declaring invalid instances for this datatype.",
+      "tests": [
+        {
+          "name": "NISTSchema-SV-II-atomic-string-minLength-2",
+          "kind": "schemaTest",
+          "expected": {
+            "validity": "valid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTSchema-SV-II-atomic-string-minLength-2.xsd",
+            "bytes": 1106,
+            "sha256": "73783fa1cbc2c63642566e1f0b01aec482f30e8d8537318815963aefead699d7",
+            "gitBlob": "64bb66c772e573a02d86ae7e5119eb61e2c749c1",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTSchema-SV-II-atomic-string-minLength-2.xsd"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-string-minLength-2-1",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-1.xml",
+            "bytes": 789,
+            "sha256": "1249fa795cc294f084883a972243db10cfcfdfbbd553370dfe5319633a708c32",
+            "gitBlob": "b24f43c356cf30f95dad8494f71347992537c086",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-1.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-string-minLength-2-2",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-2.xml",
+            "bytes": 1038,
+            "sha256": "711a76b16aa135758d21e69d6163954e3e1df5ed39dfbeb76fa861ab94653829",
+            "gitBlob": "162eda3592cdea38f3d08576d2bc4b22363879a4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-2.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-string-minLength-2-3",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-3.xml",
+            "bytes": 1287,
+            "sha256": "4a220205af8e7467af9e9a4d776c2d4825d5e26c3c1d3933bc51f4a65ae4620c",
+            "gitBlob": "840a56a0db6b4b79470bec4cf9911bd3e6b21bf4",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-3.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-string-minLength-2-4",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-4.xml",
+            "bytes": 1536,
+            "sha256": "0f2ecdd16641954d811429478bb8b831a427a86879f1b4075cc75f01260dea40",
+            "gitBlob": "d9190567f83cba475c5af531b9e6edaa276f56c7",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-4.xml"
+          }
+        },
+        {
+          "name": "NISTXML-SV-II-atomic-string-minLength-2-5",
+          "kind": "instanceTest",
+          "expected": {
+            "validity": "invalid"
+          },
+          "status": {
+            "status": "accepted",
+            "date": "2004-01-14"
+          },
+          "source": {
+            "path": "nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-5.xml",
+            "bytes": 1786,
+            "sha256": "a206ce1b87d0ea7c3a7febf8d525827ac364a74f340daaedc4728af134a7f956",
+            "gitBlob": "8b68cbe79df2c27951a4798634ff68f1375e8e56",
+            "url": "https://github.com/w3c/xsdtests/blob/7bc3365c652a322f3d762021b3879eb92dae7e30/nistData/atomic/string/Schema+Instance/NISTXML-SV-II-atomic-string-minLength-2-5.xml"
+          }
+        }
+      ]
+    }
+  ]
+}
