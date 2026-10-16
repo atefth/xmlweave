@@ -1,10 +1,11 @@
 # Changelog
 
-## 0.1.0 — release candidate
+## 0.1.0
 
 - Correct schema version/annotation metadata handling and source diagnostic identity; abort stalled sources without poisoning unrelated hint requests or admission slots.
 - Verify 100 mixed validation lifecycles, clean pinned native rebuilds and expanded standards/Java compatibility cases before first publication.
 - Add a newcomer guide, multi-file validation example and npm version badge.
+- Observe cancelled shared-promise failures, retain text only for potential ID types, preserve diagnostic ID fallbacks and keep failed rebuild evidence.
 - Replace the default XSD engine with packaged Xerces-C++ WASM after a confirmed libxml2 base64 conformance defect; retain the legacy worker as an explicit optional companion.
 - Add original-source diagnostics, strict byte decoding, DOM/chunk sources, independent sessions and immutable processing ceilings.
 - Add isolated native schema graphs, real incremental SAX/PSVI output, worker deadlines, actual type derivation metadata and an explicit OpenJDK-derived Java provider.

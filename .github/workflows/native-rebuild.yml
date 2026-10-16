@@ -62,6 +62,7 @@ jobs:
         env:
           XMLWEAVE_SKIP_BUILD: "1"
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: rebuilt-native-runtime
           path: |
